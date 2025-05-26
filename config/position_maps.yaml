@@ -1,0 +1,138 @@
+# Position Maps used for generating Combos
+
+# Positions from Left To Right
+#
+# Macro2 - Macro1 - ModPinky - Pinky - Ring - Middle - Index - InnerIndex - IndexMod - Middle - [now backwards for right side]
+#
+# | Mod2 | Mod1 | PMod | Pky | Rng | Mdl | Idx | IIdx | IMod | Spc | IMod | IIdx | Idx | Mdl | Rng | Pky | PMod | Mod1 | Mod2 |
+# | ---- | ---- | ---- | --- | --- | --- | --- | ---- | ---- | --- | ---- | ---- | --- | --- | --- | --- | ---- | ---- | ---- |
+# | L0M2 | L0M1 | L0MP | L0P | L0R | L0M | L0I | L0II | L0IM | M0S | R0IM | R0II | R0I | R0M | R0R | R0P | R0MP | R0M1 | R0M2 |
+# | L1M2 | L1M1 | L1MP | L1P | L1R | L1M | L1I | L1II | L1IM | M1S | R1IM | R1II | R1I | R1M | R1R | R1P | R1MP | R1M1 | R1M2 |
+# | L2M2 | L2M1 | L2MP | L2P | L2R | L2M | L2I | L2II | L2IM | M2S | R2IM | R2II | R2I | R2M | R2R | R2P | R2MP | R2M1 | R2M2 |
+# | L3M2 | L3M1 | L3MP | L3P | L3R | L3M | L3I | L3II | L3IM | M3S | R3IM | R3II | R3I | R3M | R3R | R3P | R3MP | R3M1 | R3M2 |
+# | L4M2 | L4M1 | L4MP | L4P | L4R | L4M | L4I | L4II | L4IM | M4S | R4IM | R4II | R4I | R4M | R4R | R4P | R4MP | R4M1 | R4M2 |
+# | L5M2 | L5M1 | L5MP | L5P | L5R | L5M | L5I | L5II | L5IM | M5S | R5IM | R5II | R5I | R5M | R5R | R5P | R5MP | R5M1 | R5M2 |
+# | LTM2 | LTM1 | LTMP | LTP | LTR | LTM | LTI | LTII | LTIM | MTS | RTIM | RTII | RTI | RTM | RTR | RTP | RTMP | RTM1 | RTM2 |
+
+# Keyboard crkbd 6x3_3
+corne:
+  L1MP: 0
+  L1P: 1
+  L1R: 2
+  L1M: 3
+  L1I: 4
+  L1II: 5
+  R1II: 6
+  R1I: 7
+  R1M: 8
+  R1R: 9
+  R1P: 10
+  R1MP: 11
+  L2MP: 12
+  L2P: 13
+  L2R: 14
+  L2M: 15
+  L2I: 16
+  L2II: 17
+  R2II: 18
+  R2I: 19
+  R2M: 20
+  R2R: 21
+  R2P: 22
+  R2MP: 23
+  L3MP: 24
+  L3P: 25
+  L3R: 26
+  L3M: 27
+  L3I: 28
+  L3II: 29
+  R3II: 30
+  R3I: 31
+  R3M: 32
+  R3R: 33
+  R3P: 34
+  R3MP: 35
+  LTM: 36
+  LTI: 37
+  LTII: 38
+  RTII: 39
+  RTI: 40
+  RTM: 41
+
+# Keyboard Totem 5x2+6_3
+totem:
+  L1P: 0
+  L1R: 1
+  L1M: 2
+  L1I: 3
+  L1II: 4
+  R1II: 5
+  R1I: 6
+  R1M: 7
+  R1R: 8
+  R1P: 9
+  L2P: 10
+  L2R: 11
+  L2M: 12
+  L2I: 13
+  L2II: 14
+  R2II: 15
+  R2I: 16
+  R2M: 17
+  R2R: 18
+  R2P: 19
+  L3MP: 20
+  L3P: 21
+  L3R: 22
+  L3M: 23
+  L3I: 24
+  L3II: 25
+  R3II: 26
+  R3I: 27
+  R3M: 28
+  R3R: 29
+  R3P: 30
+  R3MP: 31
+  LTM: 32
+  LTI: 33
+  LTII: 34
+  RTII: 35
+  RTI: 36
+  RTM: 37
+
+# Keyboard cb34s
+cb34s:
+  L1P: 0
+  L1R: 1
+  L1M: 2
+  L1I: 3
+  L1II: 4
+  R1II: 5
+  R1I: 6
+  R1M: 7
+  R1R: 8
+  R1P: 9
+  L2P: 10
+  L2R: 11
+  L2M: 12
+  L2I: 13
+  L2II: 14
+  R2II: 15
+  R2I: 16
+  R2M: 17
+  R2R: 18
+  R2P: 19
+  L3P: 20
+  L3R: 21
+  L3M: 22
+  L3I: 23
+  L3II: 24
+  R3II: 25
+  R3I: 26
+  R3M: 27
+  R3R: 28
+  R3P: 29
+  LTI: 30
+  LTII: 31
+  RTII: 32
+  RTI: 33

@@ -1,0 +1,95 @@
+
+/ {
+    behaviors {
+        hmlc: homerow_mod_lctrl {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HMR_LCTRL";
+            #binding-cells = <2>;
+            tapping-term-ms = <150>;
+            quick-tap-ms = <0>;
+            flavor = "balanced";
+            hold-trigger-key-positions = <5 6 7 8 9 15 16 17 18 19 25 26 27 28 29>;
+            bindings = <&kp LCTRL>, <&kp>;
+        };
+        hmrc: homerow_mod_rctrl {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HMR_RCTRL";
+            #binding-cells = <2>;
+            tapping-term-ms = <150>;
+            quick-tap-ms = <0>;
+            flavor = "balanced";
+            hold-trigger-key-positions = <0 1 2 3 4 10 11 12 13 14 20 21 22 23 24>;
+            bindings = <&kp RCTRL>, <&kp>;
+        };
+        hmls: homerow_mod_lshift {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HMR_LSFT";
+            #binding-cells = <2>;
+            tapping-term-ms = <150>;
+            quick-tap-ms = <0>;
+            flavor = "balanced";
+            hold-trigger-key-positions = <5 6 7 8 9 15 16 17 18 19 25 26 27 28 29>;
+            bindings = <&kp LSFT>, <&kp>;
+        };
+        hmrs: homerow_mod_rshift {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HMR_RSFT";
+            #binding-cells = <2>;
+            tapping-term-ms = <180>;
+            quick-tap-ms = <0>;
+            flavor = "balanced";
+            hold-trigger-key-positions = <0 1 2 3 4 10 11 12 13 14 20 21 22 23 24>;
+            bindings = <&kp RSFT>, <&kp>;
+        };
+        hmla: homerow_mod_lalt {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HMR_LALT";
+            #binding-cells = <2>;
+            tapping-term-ms = <400>;
+            quick-tap-ms = <0>;
+            flavor = "balanced";
+            bindings = <&kp LALT>, <&kp>;
+        };
+        hmra: homerow_mod_ralt {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HMR_RALT";
+            #binding-cells = <2>;
+            tapping-term-ms = <800>;
+            quick-tap-ms = <0>;
+            flavor = "tap-preferred";
+            bindings = <&kp RALT>, <&kp>;
+        };
+        hmlg: homerow_mod_lgui {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HMR_LGUI";
+            #binding-cells = <2>;
+            tapping-term-ms = <500>;
+            quick-tap-ms = <0>;
+            flavor = "balanced";
+            bindings = <&kp LGUI>, <&kp>;
+        };
+        hmrg: homerow_mod_rgui {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HMR_RGUI";
+            #binding-cells = <2>;
+            tapping-term-ms = <500>;
+            quick-tap-ms = <0>;
+            flavor = "balanced";
+            bindings = <&kp RGUI>, <&kp>;
+        };
+    };
+};
+
+// Kurzmakros zum Verwenden in Layers:
+
+#define hmlc_T &hmlc T
+#define hmrc_N &hmrc N
+#define hmls_S &hmls S
+#define hmrs_E &hmrs E
+#define hmla_R &hmla R
+#define hmla_I &hmla I
+#define hmlg_A &hmlg A
+#define hmrg_O &hmrg O
+#define hmra_X &hmra X
+#define hmra_DOT &hmra DOT
+#define hmra_SQT &hmra SQT

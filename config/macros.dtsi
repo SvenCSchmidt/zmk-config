@@ -1,0 +1,25 @@
+/ {
+    macros {
+        MACRO_DQT: mcr_DQT {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <
+                &macro_press &kp LSHFT
+                &macro_tap &kp SQT
+                &macro_release &kp LSHFT
+                >;
+        };
+
+        MACRO_SFT_SCH: mcr_SCH {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <
+                &macro_tap &kp S
+                &macro_release &kp LSFT
+                &macro_release &kp RSFT
+                &macro_tap &kp C
+                &macro_tap &kp H
+                >;
+        };
+    };
+};

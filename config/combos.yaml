@@ -1,0 +1,231 @@
+combos:
+- name: Cmb_UmlA
+  bindings: '&kp RA(Q)'
+  layers:
+  - 0
+  keys:
+  - L0
+  - L10
+- name: Cmb_UmlO
+  bindings: '&kp RA(P)'
+  layers:
+  - 0
+  keys:
+  - R4
+  - R14
+- name: Cmb_UmlU
+  bindings: '&kp RA(Y)'
+  layers:
+  - 0
+  keys:
+  - R2
+  - R12
+- name: Cmb_UmlS
+  bindings: '&kp RA(S)'
+  layers:
+  - 0
+  keys:
+  - L2
+  - L12
+- name: Cmb_EUR
+  bindings: '&kp RA(N5)'
+  layers:
+  - 0
+  keys:
+  - R12
+  - R22
+- name: Cmb_Grave
+  bindings: '&kp GRAVE'
+  layers:
+  - 2
+  keys:
+  - L11
+  - L21
+- name: Cmb_LGUI
+  bindings: '&kp LGUI'
+  layers:
+  - 0
+  - 2
+  keys:
+  - L10
+  - L20
+- name: Cmb_RGUI
+  bindings: '&kp RGUI'
+  layers:
+  - 0
+  - 2
+  keys:
+  - R14
+  - R24
+- name: Cmb_ESC
+  bindings: '&kp ESC'
+  layers:
+  - 0
+  - 1
+  - 2
+  - 3
+  - 4
+  keys:
+  - L0
+  - L1
+- name: Cmb_TAB
+  bindings: '&kp TAB'
+  layers:
+  - 0
+  - 1
+  - 2
+  - 4
+  keys:
+  - L22
+  - L23
+- name: Cmb_CLCKs
+  bindings: '&kp CLCK'
+  layers:
+  - 1
+  keys:
+  - L11
+  - L12
+  - L13
+- name: Cmb_CapsWord
+  bindings: '&caps_word'
+  layers:
+  - 0
+  keys:
+  - L12
+  - R12
+- name: Cmb_BSPC
+  bindings: '&kp BSPC'
+  layers:
+  - 0
+  - 2
+  - 4
+  keys:
+  - R21
+  - R22
+- name: Cmb_DEL
+  bindings: '&kp DEL'
+  layers:
+  - 0
+  - 2
+  - 4
+  keys:
+  - R22
+  - R23
+- name: Cmb_CtrlBSPC
+  bindings: '&kp LC(BSPC)'
+  layers:
+  - 0
+  - 2
+  keys:
+  - R21
+  - R22
+  - R23
+- name: Cmb_CtrlDEL
+  bindings: '&kp LC(DEL)'
+  layers:
+  - 0
+  - 2
+  keys:
+  - R22
+  - R23
+  - R24
+- name: Cmb_WordLeft
+  bindings: '&kp LC(LEFT)'
+  layers:
+  - 1
+  keys:
+  - L11
+  - L12
+- name: Cmb_WordRight
+  bindings: '&kp LC(RIGHT)'
+  layers:
+  - 1
+  keys:
+  - L12
+  - L13
+- name: Cmb_Cut
+  bindings: '&kp LC(X)'
+  layers:
+  - 0
+  keys:
+  - L20
+  - L21
+- name: Cmb_Copy
+  bindings: '&kp LC(C)'
+  layers:
+  - 0
+  keys:
+  - L21
+  - L22
+- name: Cmb_Paste
+  bindings: '&kp LC(V)'
+  layers:
+  - 0
+  keys:
+  - L20
+  - L21
+  - L22
+- name: Cmb_Reset
+  bindings: '&bootloader'
+  layers:
+  - 4
+  keys:
+  - L11
+  - L12
+  - L13
+- name: Cmb_LPAR
+  bindings: '&kp LPAR'
+  layers:
+  - 0
+  keys:
+  - L4
+  - L14
+- name: Cmb_RPAR
+  bindings: '&kp RPAR'
+  layers:
+  - 0
+  keys:
+  - R4
+  - R14
+- name: Cmb_LBKT
+  bindings: '&kp LBKT'
+  layers:
+  - 0
+  keys:
+  - L14
+  - L24
+- name: Cmb_RBKT
+  bindings: '&kp RBKT'
+  layers:
+  - 0
+  keys:
+  - R14
+  - R24
+- name: Cmb_MINUS
+  bindings: '&kp MINUS'
+  layers:
+  - 0
+  keys:
+  - L3
+  - L13
+- name: Cmb_EQUAL
+  bindings: '&kp EQUAL'
+  layers:
+  - 0
+  keys:
+  - R1
+  - R11
+- name: Cmb_MCR_QUOTE
+  bindings: '&mcr_DQT'
+  layers:
+  - 2
+  keys:
+  - L1
+  - L11
+- name: Cmb_MCR_SCH
+  bindings: '&mcr_SCH'
+  layers:
+  - 0
+  keys:
+  - L12
+  - L22

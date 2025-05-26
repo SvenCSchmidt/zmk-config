@@ -1,0 +1,130 @@
+// 10 Keys per Line
+// Layer 0
+
+#define L0_R0_5_L &kp N1 &kp N2 &kp N3 &kp N5 &kp N5
+#define L0_R0_5_R &kp N6 &kp N7 &kp N8 &kp N9 &kp N0
+
+#define L0_R1_5_L &kp Q &kp W &kp F &kp P &kp B
+#define L0_R1_5_R &kp J &kp L &kp U &kp Y &kp SEMI
+
+#define L0_R2_5_L &kp A &hmla_R &hmls_S &hmlc_T &kp G
+#define L0_R2_5_R &kp M &hmrc_N &hmrs_E &hmla_I &kp O
+
+#define L0_R3_5_L &kp Z &hmra_X &kp C &kp D &kp V
+#define L0_R3_5_R &kp K &kp H &kp COMMA &hmra_DOT &kp SLASH
+
+// Layer 1
+#define L1_R1_5_L &none &kp ESC &kp PSCRN &kp UP &kp INS &kp PG_UP
+#define L1_R1_5_R &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4
+
+#define L1_R2_5_L &kp HOME &kp LEFT &kp DOWN &kp RIGHT &kp END
+#define L1_R2_5_R &kp K_APP &kp RCTRL &kp RSHFT &kp LALT &kp RGUI
+
+#define L1_R3_5_L &kp SLCK &kp PAUSE_BREAK &kp BSPC &kp DEL &kp PG_DN
+#define L1_R3_5_R &none &bt BT_PRV &bt BT_NXT &kp RALT &bt BT_CLR
+
+// Layer 2
+#define L2_R1_5_L &kp RS(N1) &kp RS(N2) &kp RS(N3) &kp RS(N4) &kp RS(N5)
+#define L2_R1_5_R &kp LS(N6) &kp LS(N7) &kp LS(N8) &kp LS(N9) &kp LS(N0)
+
+#define L2_R2_5_L &kp N1 &hmla N2 &hmls N3 &hmlc N4 &kp N5
+#define L2_R2_5_R &kp N6 &hmrc N7 &hmrs N8 &hmla N9 &kp N0
+
+#define L2_R3_5_L &kp MINUS &hmra SQT &kp EQUAL &kp LPAR &kp LBKT
+#define L2_R3_5_R &kp RBKT &kp RPAR &kp COMMA &hmra DOT &kp BSLH
+
+// Layer 3
+#define L3_R1_5_L &kp F1 &kp F2 &kp F3 &kp F4 &kp F5
+#define L3_R1_5_R &kp F6 &kp F7 &kp F8 &kp F9 &kp F10
+
+#define L3_R2_5_L &kp LGUI &kp LALT &kp LSHFT &kp LCTRL &kp F11
+#define L3_R2_5_R &kp F12 &kp RCTRL &kp RSHFT &kp LALT &kp RGUI
+
+#define L3_R3_5_L &none &kp RALT &none &none &none
+#define L3_R3_5_R &none &none &none &kp RALT &none
+
+// Layer 4
+#define L4_R1_5_L &to 0 &none &none &none &none
+#define L4_R1_5_R &kp FSLH &kp N7 &kp N8 &kp N9 &kp MINUS
+
+#define L4_R2_5_L &none &none &none &none &none
+#define L4_R2_5_R &kp STAR &kp N4 &kp N5 &kp N6 &kp PLUS
+
+#define L4_R3_5_L &none &none &kp BSPC &kp DEL &none
+#define L4_R3_5_R &kp N0 &kp N1 &kp N2 &kp N3 &none
+
+
+// 12 Keys per Line
+
+// Layer 0
+#define L0_R0_6_L &kp ESC &kp N1 &kp N2 &kp N3 &kp N5 &kp N5
+#define L0_R0_6_R &kp N6 &kp N7 &kp N8 &kp N9 &kp N0 &kp PLUS
+
+#define L0_R1_6_L &kp ESC &kp Q &kp W &kp F &kp P &kp B
+#define L0_R1_6_R &kp J &kp L &kp U &kp Y &kp SEMI &kp SQT
+
+#define L0_R2_6_L &kp MINUS &kp A &hmla_R &hmls_S &hmlc_T &kp G
+#define L0_R2_6_R &kp M &hmrc_N &hmrs_E &hmla_I &kp O &kp BSLH
+
+#define L0_R3_6_L &kp LSFT &kp Z &hmra_X &kp C &kp D &kp V
+#define L0_R3_6_R &kp K &kp H &kp COMMA &hmra_DOT &kp SLASH &kp RSFT
+
+// Layer 1
+#define L1_R1_6_L &none &kp ESC   &kp PSCRN        &kp UP    &kp INS    &kp PG_UP
+#define L1_R1_6_R &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4 &none
+
+#define L1_R2_6_L &none &kp HOME  &kp LEFT         &kp DOWN  &kp RIGHT  &kp END
+#define L1_R2_6_R &kp K_APP     &kp RCTRL     &kp RSHFT     &kp LALT      &kp RGUI &none
+
+#define L1_R3_6_L &none &kp SLCK &kp PAUSE_BREAK &kp BSPC &kp DEL &kp PG_DN
+#define L1_R3_6_R &none &bt BT_PRV &bt BT_NXT &kp RALT &bt BT_CLR &none
+
+// Layer 2
+#define L2_R1_6_L &none &kp RS(N1) &kp RS(N2) &kp RS(N3) &kp RS(N4) &kp RS(N5)
+#define L2_R1_6_R &kp LS(N6) &kp LS(N7) &kp LS(N8) &kp LS(N9) &kp LS(N0) &none
+
+#define L2_R2_6_L &none &kp N1 &hmla N2 &hmls N3 &hmlc N4 &kp N5
+#define L2_R2_6_R &kp N6 &hmrc N7 &hmrs N8 &hmla N9 &kp N0 &none
+
+#define L2_R3_6_L &none &kp MINUS &hmra SQT &kp EQUAL &kp LPAR &kp LBKT
+#define L2_R3_6_R &kp RBKT &kp RPAR &kp COMMA &hmra DOT &kp BSLH &none
+
+// Layer 3
+#define L3_R1_6_L &none &kp F1 &kp F2 &kp F3 &kp F4 &kp F5
+#define L3_R1_6_R &kp F6 &kp F7 &kp F8 &kp F9 &kp F10 &none
+
+#define L3_R2_6_L &none &kp LGUI &kp LALT &kp LSHFT &kp LCTRL &kp F11
+#define L3_R2_6_R &kp F12 &kp RCTRL &kp RSHFT &kp LALT &kp RGUI &none
+
+#define L3_R3_6_L &none &none &kp RALT &none &none &none
+#define L3_R3_6_R &none &none &none &kp RALT &none &none
+
+// Layer 4
+#define L4_R1_6_L &none &to 0 &none &none &none &none
+#define L4_R1_6_R &kp FSLH &kp N7 &kp N8 &kp N9 &kp MINUS &none
+
+#define L4_R2_6_L &none &none &none &none &none &none
+#define L4_R2_6_R &kp STAR &kp N4 &kp N5 &kp N6 &kp PLUS &none
+
+#define L4_R3_6_L &none &none &none &kp BSPC &kp DEL &none
+#define L4_R3_6_R &kp N0 &kp N1 &kp N2 &kp N3 &none &none
+
+
+// Thumbs
+
+#define L0_TBS_4 &none &lt 1 RET &lt 2 SPC &none
+#define L0_TBS_6 &none &none &lt 1 RET &lt 2 SPC &none &none
+#define L0_TBS_8 &kp LCTRL &kp LALT &kp LGUI &lt 1 RET &lt 2 SPC &kp RGUI &kp RALT &kp RCTRL
+#define L0_TBS_10 &kp LCTRL &kp LALT &kp LGUI &kp TAB &lt 1 RET &lt 2 SPC &kp BSPC &kp RGUI &kp RALT &kp RCTRL
+
+#define L1_TBS_4 &none &none &mo 3 &none
+#define L1_TBS_6 &none &none &none &mo 3 &none &none
+
+#define L2_TBS_4 &none &tog 4 &none &none
+#define L2_TBS_6 &none &none &tog 4 &none &none &none
+
+#define L3_TBS_4 &none &none &none &none
+#define L3_TBS_6 &none &none &none &none &none &none
+
+#define L4_TBS_4 &none &kp RET &kp SPACE &none
+#define L4_TBS_6 &none &none &kp RET &kp SPACE &none &none 
