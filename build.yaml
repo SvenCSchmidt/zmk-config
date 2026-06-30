@@ -11,9 +11,11 @@ include:
     shield: settings_reset
     artifact-name: totem_settings_reset
 
-  # --- cb34s (nice_nano_v2 + nice!view) ---
-  - board: nice_nano_v2
+  # --- cb34s (nice!nano v2 + nice!view) ---
+  # ZMK boards now need the //zmk variant (Zephyr 4.1 hardware model), and the
+  # old nice_nano_v2 board is now `nice_nano` (defaults to the 2.0.0 revision).
+  - board: nice_nano//zmk
     shield: cb34s nice_view_adapter nice_view
-  - board: nice_nano_v2
+  - board: nice_nano//zmk
     shield: settings_reset
     artifact-name: cb34s_settings_reset

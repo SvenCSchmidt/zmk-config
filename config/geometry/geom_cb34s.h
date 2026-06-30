@@ -1,5 +1,5 @@
 /*
- * Geometry adapter for the cb34s shield (nice_nano_v2). Pure 3x5 + 2-thumbs/side
+ * Geometry adapter for the cb34s shield (nice_nano//zmk). Pure 3x5 + 2-thumbs/side
  * core: 34 physical positions, numbered contiguously, no dead keys. This is the
  * template for any new 3x5+2 board — the LAYOUT() adapter is the identity map.
  *

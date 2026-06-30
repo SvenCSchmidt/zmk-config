@@ -27,8 +27,8 @@ are produced via AltGr; see `config/shared/keys_de.h`).
 
 | Board  | Hardware                       | Geometry            |
 |--------|--------------------------------|---------------------|
-| TOTEM  | `xiao_ble` + `totem_left/right`| 3x5 + 2 thumbs/side |
-| cb34s  | `nice_nano_v2` + `cb34s`       | 3x5 + 2 thumbs/side |
+| TOTEM  | `xiao_ble//zmk` + `totem_left/right` | 3x5 + 2 thumbs/side |
+| cb34s  | `nice_nano//zmk` + `cb34s`           | 3x5 + 2 thumbs/side |
 
 Adding a board changes no shared content — see [`ADDING_A_BOARD.md`](ADDING_A_BOARD.md).
 
@@ -36,3 +36,13 @@ Adding a board changes no shared content — see [`ADDING_A_BOARD.md`](ADDING_A_
 
 GitHub Actions builds every entry in [`build.yaml`](build.yaml) (each board plus a
 `settings_reset` image) and publishes the `.uf2` files as workflow artifacts.
+
+## Planned
+
+- **Optional animated display per board.** It should be possible to opt a board
+  into animated display widgets (the cb34s previously used the
+  `AakashDabas/zmk@animated_widgets` fork for this). The plan is to gate it behind
+  a per-board option — e.g. a dedicated `build.yaml` entry with an
+  `animated_widgets` ZMK module/revision and the matching `.conf` flags — so only
+  boards that ask for it pull in the animation code, while the default build stays
+  on upstream `zmk main`.
