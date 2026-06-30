@@ -2,9 +2,12 @@ manifest:
   remotes:
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
-    # Additional modules containing boards/shields/custom code can be listed here as well
-    # See https://docs.zephyrproject.org/3.2.0/develop/west/manifest.html#projects
   projects:
+    # Single, unified ZMK revision for every board in this repo.
+    # The current vertical slice (TOTEM on xiao_ble, cb34s on nice_nano_v2) is
+    # all nRF-based and builds against zmk main. When the ARM/STM32 boards
+    # (Le Chiffre) are migrated, re-check that this revision still builds them
+    # before adding them to build.yaml.
     - name: zmk
       remote: zmkfirmware
       revision: main

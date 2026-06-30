@@ -1,0 +1,235 @@
+/*
+ * combos.dtsi — all combos, shared by every board. Taken 1:1 from the canonical
+ * TOTEM keymap, with key-positions expressed as symbolic POS_* names resolved by
+ * the board's geometry header. Every combo here lives entirely in the 3x5+2 core,
+ * so no per-board guards are needed yet. Combos that touch optional slots (outer
+ * column, center) will be added under #ifdef guards when such a board is migrated.
+ */
+
+/ {
+    combos {
+        compatible = "zmk,combos";
+
+        Cmb_UmlA {
+            bindings = <&kp RA(Q)>;
+            key-positions = <POS_LT0 POS_LM0>;
+            layers = <0>;
+        };
+
+        Cmb_UmlO {
+            bindings = <&kp RA(P)>;
+            key-positions = <POS_RT0 POS_RM0>;
+            layers = <0>;
+        };
+
+        Cmb_UmlU {
+            bindings = <&kp RA(Y)>;
+            key-positions = <POS_RT2 POS_RM2>;
+            layers = <0>;
+        };
+
+        Cmb_UmlS {
+            bindings = <&kp RA(S)>;
+            key-positions = <POS_LT2 POS_LM2>;
+            layers = <0>;
+        };
+
+        Cmb_EUR {
+            bindings = <&kp RA(N5)>;
+            key-positions = <POS_RM2 POS_RB2>;
+            layers = <0>;
+        };
+
+        Cmb_ESC {
+            bindings = <&kp ESC>;
+            key-positions = <POS_LT0 POS_LT1>;
+            layers = <0 1 2 3 4>;
+        };
+
+        Cmb_TAB {
+            bindings = <&kp TAB>;
+            key-positions = <POS_LB2 POS_LB3>;
+            layers = <0 1 2 4>;
+        };
+
+        Cmb_CLCKs {
+            bindings = <&kp CLCK>;
+            key-positions = <POS_LM0 POS_LM1 POS_LM2 POS_LM3>;
+            layers = <1>;
+        };
+
+        Cmb_CapsWord {
+            bindings = <&caps_word>;
+            key-positions = <POS_LM2 POS_RM2>;
+            layers = <0>;
+        };
+
+        Cmb_BSPC {
+            bindings = <&kp BSPC>;
+            key-positions = <POS_RB3 POS_RB2>;
+            layers = <0 2 4>;
+        };
+
+        Cmb_DEL {
+            bindings = <&kp DEL>;
+            key-positions = <POS_RB2 POS_RB1>;
+            layers = <0 2 4>;
+        };
+
+        Cmb_CtrlBSPC {
+            bindings = <&kp LC(BSPC)>;
+            key-positions = <POS_RB3 POS_RB2 POS_RB1>;
+            layers = <0 2>;
+        };
+
+        Cmb_CtrlDEL {
+            bindings = <&kp LC(DEL)>;
+            key-positions = <POS_RB2 POS_RB1 POS_RB0>;
+            layers = <0 2>;
+        };
+
+        Cmb_WordLeft {
+            bindings = <&kp LC(LEFT)>;
+            key-positions = <POS_LM1 POS_LM2>;
+            layers = <1>;
+        };
+
+        Cmb_WordRight {
+            bindings = <&kp LC(RIGHT)>;
+            key-positions = <POS_LM2 POS_LM3>;
+            layers = <1>;
+        };
+
+        Cmb_Cut {
+            bindings = <&kp LC(X)>;
+            key-positions = <POS_LB0 POS_LB1>;
+            layers = <0>;
+        };
+
+        Cmb_Copy {
+            bindings = <&kp LC(C)>;
+            key-positions = <POS_LB1 POS_LB2>;
+            layers = <0>;
+        };
+
+        Cmb_Paste {
+            bindings = <&kp LC(V)>;
+            key-positions = <POS_LB0 POS_LB1 POS_LB2>;
+            layers = <0>;
+        };
+
+        Cmb_Reset {
+            bindings = <&bootloader>;
+            key-positions = <POS_LM1 POS_LM2 POS_LM3>;
+            layers = <4>;
+        };
+
+        Cmb_UNDO {
+            bindings = <&kp RC(Z)>;
+            key-positions = <POS_LT2 POS_LT3>;
+            layers = <0>;
+        };
+
+        Cmb_REDO {
+            bindings = <&kp LC(Y)>;
+            key-positions = <POS_RT3 POS_RT2>;
+            layers = <0>;
+        };
+
+        Cmb_ALL {
+            bindings = <&kp RC(A)>;
+            key-positions = <POS_LM0 POS_LM1>;
+            layers = <0>;
+        };
+
+        Cmb_LPAR {
+            bindings = <&kp LPAR>;
+            key-positions = <POS_LT4 POS_LM4>;
+            layers = <0>;
+        };
+
+        Cmb_RPAR {
+            bindings = <&kp RPAR>;
+            key-positions = <POS_RT4 POS_RM4>;
+            layers = <0>;
+        };
+
+        Cmb_LBKT {
+            bindings = <&kp LBKT>;
+            key-positions = <POS_LM4 POS_LB4>;
+            layers = <0>;
+        };
+
+        Cmb_RBKT {
+            bindings = <&kp RBKT>;
+            key-positions = <POS_RM4 POS_RB4>;
+            layers = <0>;
+        };
+
+        Cmb_BSLH {
+            bindings = <&kp BSLH>;
+            key-positions = <POS_RM0 POS_RB0>;
+            layers = <0>;
+        };
+
+        Cmb_MINUS {
+            bindings = <&kp MINUS>;
+            key-positions = <POS_LT3 POS_LM3>;
+            layers = <0>;
+        };
+
+        Cmb_EQUAL {
+            bindings = <&kp EQUAL>;
+            key-positions = <POS_RT3 POS_RM3>;
+            layers = <0>;
+        };
+
+        Cmb_UNDER {
+            bindings = <&kp LS(MINUS)>;
+            key-positions = <POS_LM3 POS_LB3>;
+            layers = <0>;
+        };
+
+        Cmb_PLUS {
+            bindings = <&kp LS(EQUAL)>;
+            key-positions = <POS_RM3 POS_RB3>;
+            layers = <0>;
+        };
+
+        Cmb_COLON {
+            bindings = <&kp LS(SEMI)>;
+            key-positions = <POS_RT1 POS_RM1>;
+            layers = <0>;
+        };
+
+        Cmb_PIPE {
+            bindings = <&kp LS(BSLH)>;
+            key-positions = <POS_RM1 POS_RB1>;
+            layers = <0>;
+        };
+
+        Cmb_MCR_SCH {
+            bindings = <&MCR_SCH>;
+            key-positions = <POS_LM2 POS_LB2>;
+            layers = <0>;
+        };
+
+        Cmb_MCR_DQT {
+            bindings = <&MCR_DQT>;
+            key-positions = <POS_LT1 POS_LM1>;
+            layers = <0>;
+        };
+
+        Cmb_MCR_TILDE {
+            bindings = <&MCR_TILDE>;
+            key-positions = <POS_LM1 POS_LB1>;
+            layers = <0 2>;
+        };
+
+        Cmb_MCR_SQT {
+            bindings = <&MCR_SQT>;
+            key-positions = <POS_LM0 POS_LB0>;
+            layers = <0 2>;
+        };
+    };
+};

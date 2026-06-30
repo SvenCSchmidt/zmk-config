@@ -1,0 +1,94 @@
+/*
+ * behaviors.dtsi — HomeRowMods (hold-tap) behaviors, shared by every board.
+ *
+ * Parameters are taken 1:1 from the canonical TOTEM keymap. Positional hold-taps
+ * (hmlc/hmrc/hmls/hmrs) use symbolic key positions resolved by the board's
+ * geometry header, so no raw position number appears here.
+ *
+ * The trigger lists are the opposite hand's 3x5 core. The dead outer-pinky
+ * positions of the TOTEM (physical 20 & 31, always &none) are intentionally
+ * omitted: a &none key can never be pressed, so it can never trigger a hold-tap —
+ * dropping it is functionally inert and keeps the lists board-independent.
+ */
+
+#define TRIGGER_RIGHT POS_RT4 POS_RT3 POS_RT2 POS_RT1 POS_RT0 \
+                      POS_RM4 POS_RM3 POS_RM2 POS_RM1 POS_RM0 \
+                      POS_RB4 POS_RB3 POS_RB2 POS_RB1 POS_RB0
+
+#define TRIGGER_LEFT  POS_LT0 POS_LT1 POS_LT2 POS_LT3 POS_LT4 \
+                      POS_LM0 POS_LM1 POS_LM2 POS_LM3 POS_LM4 \
+                      POS_LB0 POS_LB1 POS_LB2 POS_LB3 POS_LB4
+
+/ {
+    behaviors {
+        hmlc: homerow_mod_lctrl {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HOMEROW_MODS";
+            #binding-cells = <2>;
+            tapping-term-ms = <120>;
+            quick-tap-ms = <0>;
+            flavor = "balanced";
+            hold-trigger-key-positions = <TRIGGER_RIGHT>;
+            hold-while-undecided;
+            bindings = <&kp>, <&kp>;
+        };
+        hmrc: homerow_mod_rctrl {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HOMEROW_MODS";
+            #binding-cells = <2>;
+            tapping-term-ms = <120>;
+            quick-tap-ms = <0>;
+            flavor = "balanced";
+            hold-trigger-key-positions = <TRIGGER_LEFT>;
+            hold-while-undecided;
+            bindings = <&kp>, <&kp>;
+        };
+        hmls: homerow_mod_lshift {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HOMEROW_MODS";
+            #binding-cells = <2>;
+            tapping-term-ms = <150>;
+            quick-tap-ms = <0>;
+            flavor = "balanced";
+            hold-trigger-key-positions = <TRIGGER_RIGHT>;
+            bindings = <&kp>, <&kp>;
+        };
+        hmrs: homerow_mod_rshift {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HOMEROW_MODS";
+            #binding-cells = <2>;
+            tapping-term-ms = <180>;
+            quick-tap-ms = <0>;
+            flavor = "balanced";
+            hold-trigger-key-positions = <TRIGGER_LEFT>;
+            bindings = <&kp>, <&kp>;
+        };
+        hmg: homerow_mod_gui {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HOMEROW_MODS";
+            #binding-cells = <2>;
+            tapping-term-ms = <500>;
+            quick-tap-ms = <0>;
+            flavor = "balanced";
+            bindings = <&kp>, <&kp>;
+        };
+        hmla: homerow_mod_lalt {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HOMEROW_MODS";
+            #binding-cells = <2>;
+            tapping-term-ms = <400>;
+            quick-tap-ms = <0>;
+            flavor = "balanced";
+            bindings = <&kp>, <&kp>;
+        };
+        hmra: homerow_mod_ralt {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HOMEROW_MODS";
+            #binding-cells = <2>;
+            tapping-term-ms = <800>;
+            quick-tap-ms = <0>;
+            flavor = "tap-preferred";
+            bindings = <&kp>, <&kp>;
+        };
+    };
+};

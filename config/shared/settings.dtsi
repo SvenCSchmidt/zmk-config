@@ -1,0 +1,8 @@
+/*
+ * settings.dtsi — global behavior settings shared by every board.
+ * Taken 1:1 from the canonical TOTEM keymap.
+ */
+
+&caps_word {
+    continue-list = <UNDERSCORE MINUS BSPC DEL>;
+};

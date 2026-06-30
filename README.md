@@ -1,0 +1,38 @@
+# zmk-config
+
+One ZMK config for many keyboards. Keymap, combos, macros, HomeRowMods and
+settings are defined **once** in `config/shared/`; each board only carries a thin
+*geometry adapter*. Change a combo or a key in one place and rebuild firmware for
+every board.
+
+## How it works (Strategy B: master layout + per-board adapter)
+
+- **`config/shared/master_layers.dtsi`** holds every layer's content as `KM_<layer>`
+  macros over a fixed set of named *master slots* (currently a 3x5 + 2-thumbs/side
+  core). This is the single source of truth, written as a readable key grid.
+- **`config/geometry/geom_<board>.h`** provides, for one board:
+  - `POS_*` symbols mapping logical key positions to that board's physical numbers
+    (used by `combos.dtsi` and `behaviors.dtsi` — no raw number lives in `shared/`), and
+  - a QMK-style `LAYOUT()` macro that places the master slots onto the board's
+    physical matrix at compile time (reordering, padding dead positions with
+    `&none`, dropping slots the board doesn't have).
+- **`config/<board>.keymap`** is thin: it selects the geometry header, includes
+  `config/shared/*`, and maps each layer with `bindings = <KEYMAP_LAYER(KM_base)>`.
+
+The canonical content is the Colemak-DH TOTEM layout (`base`, `nav`, `num`, `fun`,
+`pad`). Host layout assumption: the OS keyboard layout is **German (DE)** (umlauts/€
+are produced via AltGr; see `config/shared/keys_de.h`).
+
+## Boards
+
+| Board  | Hardware                       | Geometry            |
+|--------|--------------------------------|---------------------|
+| TOTEM  | `xiao_ble` + `totem_left/right`| 3x5 + 2 thumbs/side |
+| cb34s  | `nice_nano_v2` + `cb34s`       | 3x5 + 2 thumbs/side |
+
+Adding a board changes no shared content — see [`ADDING_A_BOARD.md`](ADDING_A_BOARD.md).
+
+## Building
+
+GitHub Actions builds every entry in [`build.yaml`](build.yaml) (each board plus a
+`settings_reset` image) and publishes the `.uf2` files as workflow artifacts.

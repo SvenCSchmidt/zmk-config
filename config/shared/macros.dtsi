@@ -1,0 +1,66 @@
+/*
+ * macros.dtsi — shared macros, taken 1:1 from the canonical TOTEM keymap.
+ *   MCR_DQT    — German double-quote then space
+ *   MCR_SCH    — "sch" (releases shift so only S is capitalised)
+ *   MCR_SQT    — single-quote then space
+ *   MCR_TILDE  — tilde then space
+ *   MCR_DEGREE — degree sign (°)
+ */
+
+/ {
+    macros {
+        MCR_DQT: MCR_DQT {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_press &kp LSHFT>
+                , <&macro_tap &kp SQT>
+                , <&macro_release &kp LSHFT>
+                , <&macro_tap &kp SPACE>
+                ;
+        };
+
+        MCR_SCH: MCR_SCH {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_tap &kp S>
+                , <&macro_release &kp LSHIFT>
+                , <&macro_release &kp RSHIFT>
+                , <&macro_tap &kp C &kp H>
+                ;
+        };
+
+        MCR_SQT: MCR_SQT {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_tap &kp SQT>
+                , <&macro_tap &kp SPACE>
+                ;
+        };
+
+        MCR_TILDE: MCR_TILDE {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_press &kp RSHFT>
+                , <&macro_tap &kp GRAVE>
+                , <&macro_release &kp RSHFT>
+                , <&macro_tap &kp SPACE>
+                ;
+        };
+
+        MCR_DEGREE: MCR_DEGREE {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_press &kp RALT>
+                , <&macro_press &kp LSHFT>
+                , <&macro_tap &kp SEMI>
+                , <&macro_release &kp RALT>
+                , <&macro_release &kp LSHFT>
+                ;
+        };
+    };
+};
