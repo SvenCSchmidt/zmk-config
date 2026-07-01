@@ -16,21 +16,21 @@ include:
     shield: settings_reset
     artifact-name: totem_settings_reset
 
-  # --- cb34s (nice!nano v2 + nice!view) ---
+  # --- cb34s (nice!nano v2 + animated nice!view via nice-view-gem) ---
   # ZMK boards now need the //zmk variant (Zephyr 4.1 hardware model), and the
   # old nice_nano_v2 board is now `nice_nano` (defaults to the 2.0.0 revision).
   - board: nice_nano//zmk
-    shield: cb34s nice_view_adapter nice_view
+    shield: cb34s nice_view_adapter nice_view_gem
     cmake-args: -DEXTRA_CONF_FILE=../../config/shared.conf
   - board: nice_nano//zmk
     shield: settings_reset
     artifact-name: nrf_settings_reset
 
   # --- Urchin (nice!nano v2; hardware from the duckyb/urchin-zmk-module module) ---
-  # Built bare for now; the nice-view-gem animated display is a later opt-in.
+  # With the animated nice!view custom screen (nice-view-gem).
   - board: nice_nano//zmk
-    shield: urchin_left
+    shield: urchin_left nice_view_adapter nice_view_gem
     cmake-args: -DEXTRA_CONF_FILE=../../config/shared.conf
   - board: nice_nano//zmk
-    shield: urchin_right
+    shield: urchin_right nice_view_adapter nice_view_gem
     cmake-args: -DEXTRA_CONF_FILE=../../config/shared.conf

@@ -49,12 +49,14 @@ Adding a board changes no shared content — see [`ADDING_A_BOARD.md`](ADDING_A_
 GitHub Actions builds every entry in [`build.yaml`](build.yaml) (each board plus a
 `settings_reset` image) and publishes the `.uf2` files as workflow artifacts.
 
-## Planned
+## Displays
 
-- **Optional animated display per board.** It should be possible to opt a board
-  into animated display widgets (the cb34s previously used the
-  `AakashDabas/zmk@animated_widgets` fork for this). The plan is to gate it behind
-  a per-board option — e.g. a dedicated `build.yaml` entry with an
-  `animated_widgets` ZMK module/revision and the matching `.conf` flags — so only
-  boards that ask for it pull in the animation code, while the default build stays
-  on upstream `zmk main`.
+Animated nice!view screens are opt-in per board via the
+[`nice-view-gem`](https://github.com/M165437/nice-view-gem) module (referenced in
+`config/west.yml`, its `main` branch tracks our `zmk main`). A board enables it by
+adding `nice_view_adapter nice_view_gem` to its `build.yaml` shield list and the
+display settings to its `config/<board>.conf` (toggle the animation with
+`CONFIG_NICE_VIEW_GEM_ANIMATION`). **cb34s** and **Urchin** use it today; TOTEM has
+no display. (cb34s's original animation came from the `AakashDabas/zmk@animated_widgets`
+fork, which is incompatible with `zmk main`; `nice-view-gem` is the main-compatible
+replacement and unifies both boards on one display module.)

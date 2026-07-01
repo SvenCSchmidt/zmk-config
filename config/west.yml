@@ -4,6 +4,8 @@ manifest:
       url-base: https://github.com/zmkfirmware
     - name: duckyb
       url-base: https://github.com/duckyb
+    - name: m165437
+      url-base: https://github.com/M165437
   projects:
     # Single, unified ZMK revision for every board in this repo.
     # The current boards (TOTEM on xiao_ble, cb34s + Urchin on nice_nano) are all
@@ -19,6 +21,11 @@ manifest:
     # pin this revision to a main-compatible commit.
     - name: urchin-zmk-module
       remote: duckyb
+      revision: main
+    # Animated nice!view custom status screen (used by cb34s and Urchin).
+    # Its main branch tracks zmk main / Zephyr 4.1, matching our zmk revision.
+    - name: nice-view-gem
+      remote: m165437
       revision: main
   self:
     path: config
