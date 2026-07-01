@@ -8,6 +8,8 @@ manifest:
       url-base: https://github.com/M165437
     - name: rschenk
       url-base: https://github.com/rschenk
+    - name: carrefinho
+      url-base: https://github.com/carrefinho
   projects:
     # Single, unified ZMK revision for every board in this repo.
     # The current boards (TOTEM on xiao_ble, cb34s + Urchin on nice_nano) are all
@@ -34,5 +36,9 @@ manifest:
     - name: zmk-keyboard-re-gret
       remote: rschenk
       revision: v0.4
+    # forager split keyboard shield (module). Tracks zmk main.
+    - name: forager-zmk-module
+      remote: carrefinho
+      revision: main
   self:
     path: config

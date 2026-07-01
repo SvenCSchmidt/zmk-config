@@ -42,6 +42,7 @@ vendored), config, and verification.
 | cb34s  | `nice_nano//zmk` + `cb34s`           | 3x5 + 2 thumbs/side |
 | Urchin | `nice_nano//zmk` + `urchin_left/right` (module `duckyb/urchin-zmk-module`) | 3x5 + 2 thumbs/side |
 | re-gret | `xiao_ble//zmk` + `re-gret` (module `rschenk/zmk-keyboard-re-gret`) | 3x5 + 2 thumbs (unibody) |
+| forager | `xiao_ble//zmk` + `forager_left/right` (module `carrefinho/forager-zmk-module`) | 3x5 + 2 thumbs/side |
 
 Adding a board changes no shared content — see [`ADDING_A_BOARD.md`](ADDING_A_BOARD.md).
 

@@ -39,3 +39,12 @@ include:
   - board: xiao_ble//zmk
     shield: re-gret
     cmake-args: -DEXTRA_CONF_FILE=../../config/shared.conf
+
+  # --- forager (xiao_ble split; hardware from carrefinho/forager-zmk-module) ---
+  # Built bare; the forager RGB LED status widget is a later opt-in.
+  - board: xiao_ble//zmk
+    shield: forager_left
+    cmake-args: -DEXTRA_CONF_FILE=../../config/shared.conf
+  - board: xiao_ble//zmk
+    shield: forager_right
+    cmake-args: -DEXTRA_CONF_FILE=../../config/shared.conf
