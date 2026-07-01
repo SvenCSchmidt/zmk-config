@@ -2,15 +2,23 @@ manifest:
   remotes:
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
+    - name: duckyb
+      url-base: https://github.com/duckyb
   projects:
     # Single, unified ZMK revision for every board in this repo.
-    # The current vertical slice (TOTEM on xiao_ble, cb34s on nice_nano_v2) is
-    # all nRF-based and builds against zmk main. When the ARM/STM32 boards
-    # (Le Chiffre) are migrated, re-check that this revision still builds them
-    # before adding them to build.yaml.
+    # The current boards (TOTEM on xiao_ble, cb34s + Urchin on nice_nano) are all
+    # nRF-based and build against zmk main. When the ARM/STM32 boards (Le Chiffre)
+    # are migrated, re-check that this revision still builds them before adding them.
     - name: zmk
       remote: zmkfirmware
       revision: main
       import: app/west.yml
+    # Urchin hardware definition (shield). Provided as an upstream ZMK module rather
+    # than copied into boards/. The Urchin firmware repo pins zmk v0.3.0, but this
+    # module already uses zmk,physical-layout; if it fails to build against zmk main,
+    # pin this revision to a main-compatible commit.
+    - name: urchin-zmk-module
+      remote: duckyb
+      revision: main
   self:
     path: config

@@ -33,6 +33,7 @@ are produced via AltGr; see `config/shared/keys_de.h`).
 |--------|--------------------------------|---------------------|
 | TOTEM  | `xiao_ble//zmk` + `totem_left/right` | 3x5 + 2 thumbs/side |
 | cb34s  | `nice_nano//zmk` + `cb34s`           | 3x5 + 2 thumbs/side |
+| Urchin | `nice_nano//zmk` + `urchin_left/right` (module `duckyb/urchin-zmk-module`) | 3x5 + 2 thumbs/side |
 
 Adding a board changes no shared content — see [`ADDING_A_BOARD.md`](ADDING_A_BOARD.md).
 

@@ -18,4 +18,11 @@ include:
     shield: cb34s nice_view_adapter nice_view
   - board: nice_nano//zmk
     shield: settings_reset
-    artifact-name: cb34s_settings_reset
+    artifact-name: nrf_settings_reset
+
+  # --- Urchin (nice!nano v2; hardware from the duckyb/urchin-zmk-module module) ---
+  # Built bare for now; the nice-view-gem animated display is a later opt-in.
+  - board: nice_nano//zmk
+    shield: urchin_left
+  - board: nice_nano//zmk
+    shield: urchin_right
