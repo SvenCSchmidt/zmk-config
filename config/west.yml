@@ -6,6 +6,8 @@ manifest:
       url-base: https://github.com/duckyb
     - name: m165437
       url-base: https://github.com/M165437
+    - name: rschenk
+      url-base: https://github.com/rschenk
   projects:
     # Single, unified ZMK revision for every board in this repo.
     # The current boards (TOTEM on xiao_ble, cb34s + Urchin on nice_nano) are all
@@ -27,5 +29,10 @@ manifest:
     - name: nice-view-gem
       remote: m165437
       revision: main
+    # re-gret unibody keyboard shield (module). Pinned to its v0.4 tag, which the
+    # author updated for the ZMK v0.4 / Zephyr 4.1 breaking changes (our zmk main).
+    - name: zmk-keyboard-re-gret
+      remote: rschenk
+      revision: v0.4
   self:
     path: config
