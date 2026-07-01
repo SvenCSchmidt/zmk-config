@@ -41,7 +41,9 @@
 #define POS_RM2 17
 #define POS_RM1 18
 #define POS_RM0 19
-/* row 2 (bottom; physical 20 & 31 are &none and have no symbol) */
+/* row 2 (bottom). TOTEM physically HAS the outer-pinky keys at 20 & 31 (the
+ * master OUT column, bottom row); they get symbols so master edits reach them. */
+#define POS_LBX 20   /* left  bottom outer pinky (master OUT column) */
 #define POS_LB0 21
 #define POS_LB1 22
 #define POS_LB2 23
@@ -52,16 +54,23 @@
 #define POS_RB2 28
 #define POS_RB1 29
 #define POS_RB0 30
-/* thumbs (physical 32 & 37 are &none and have no symbol) */
+#define POS_RBX 31   /* right bottom outer pinky (master OUT column) */
+/* thumbs. TOTEM physically HAS the outer thumb keys at 32 & 37 (the master TH_O
+ * slots); they get symbols so master edits reach them. */
+#define POS_LHX 32   /* left  outer thumb (master TH_O) */
 #define POS_LH0 33
 #define POS_LH1 34
 #define POS_RH1 35
 #define POS_RH0 36
+#define POS_RHX 37   /* right outer thumb (master TH_O) */
 
 /* --- Layout adapter: 90 master slots -> 38 physical TOTEM positions ---
  * Master grid is 6 rows x 7 cols/hand + 3 thumbs/hand (see master_layers.dtsi).
- * TOTEM has only the 3x5+2 core, so every optional master slot (OUT/INX columns,
- * FN/NUM/EXT rows, TH_O thumbs) is simply not emitted here. */
+ * Besides the 3x5+2 core, TOTEM physically has the outer-pinky keys (master OUT
+ * column, bottom row -> s56/s69) and the outer thumbs (master TH_O -> s84/s89),
+ * so those master slots ARE emitted: populating them in master_layers.dtsi
+ * automatically reaches TOTEM. The other optional slots (INX column, FN/NUM/EXT
+ * rows, the OUT column on non-bottom rows) are not physical on TOTEM and dropped. */
 #define LAYOUT( \
     /* FN   */ s00, s01, s02, s03, s04, s05, s06,   s07, s08, s09, s10, s11, s12, s13, \
     /* NUM  */ s14, s15, s16, s17, s18, s19, s20,   s21, s22, s23, s24, s25, s26, s27, \
@@ -71,7 +80,7 @@
     /* EXT  */ s70, s71, s72, s73, s74, s75, s76,   s77, s78, s79, s80, s81, s82, s83, \
     /* THMB */ s84, s85, s86,   s87, s88, s89 \
 ) \
-          s29 s30 s31 s32 s33   s36 s37 s38 s39 s40       \
-          s43 s44 s45 s46 s47   s50 s51 s52 s53 s54       \
-    &none s57 s58 s59 s60 s61   s64 s65 s66 s67 s68 &none \
-              &none s85 s86     s87 s88 &none
+        s29 s30 s31 s32 s33   s36 s37 s38 s39 s40     \
+        s43 s44 s45 s46 s47   s50 s51 s52 s53 s54     \
+    s56 s57 s58 s59 s60 s61   s64 s65 s66 s67 s68 s69 \
+              s84 s85 s86     s87 s88 s89

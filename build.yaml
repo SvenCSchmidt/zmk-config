@@ -1,12 +1,17 @@
 # GitHub Actions build matrix for the consolidated config.
 # One entry per board/shield half, plus a settings_reset build per hardware.
+# Every real board pulls the common settings via EXTRA_CONF_FILE=config/shared.conf
+# (in addition to any board-specific config/<board>.conf). settings_reset builds
+# deliberately omit it — they only wipe stored settings.
 ---
 include:
   # --- TOTEM (xiao_ble split) ---
   - board: xiao_ble//zmk
     shield: totem_left
+    cmake-args: -DEXTRA_CONF_FILE=../../config/shared.conf
   - board: xiao_ble//zmk
     shield: totem_right
+    cmake-args: -DEXTRA_CONF_FILE=../../config/shared.conf
   - board: xiao_ble//zmk
     shield: settings_reset
     artifact-name: totem_settings_reset
@@ -16,6 +21,7 @@ include:
   # old nice_nano_v2 board is now `nice_nano` (defaults to the 2.0.0 revision).
   - board: nice_nano//zmk
     shield: cb34s nice_view_adapter nice_view
+    cmake-args: -DEXTRA_CONF_FILE=../../config/shared.conf
   - board: nice_nano//zmk
     shield: settings_reset
     artifact-name: nrf_settings_reset
@@ -24,5 +30,7 @@ include:
   # Built bare for now; the nice-view-gem animated display is a later opt-in.
   - board: nice_nano//zmk
     shield: urchin_left
+    cmake-args: -DEXTRA_CONF_FILE=../../config/shared.conf
   - board: nice_nano//zmk
     shield: urchin_right
+    cmake-args: -DEXTRA_CONF_FILE=../../config/shared.conf

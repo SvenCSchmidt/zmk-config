@@ -22,10 +22,17 @@ every board.
     `&none`, dropping slots the board doesn't have).
 - **`config/<board>.keymap`** is thin: it selects the geometry header, includes
   `config/shared/*`, and maps each layer with `bindings = <KEYMAP_LAYER(KM_base)>`.
+- **`config/shared.conf`** holds the common Kconfig settings for every board
+  (applied via `EXTRA_CONF_FILE` in `build.yaml`); a per-board `config/<board>.conf`
+  exists only for board-specific overrides (e.g. a display).
 
 The canonical content is the Colemak-DH TOTEM layout (`base`, `nav`, `num`, `fun`,
 `pad`). Host layout assumption: the OS keyboard layout is **German (DE)** (umlauts/€
 are produced via AltGr; see `config/shared/keys_de.h`).
+
+**➜ Full details in [`docs/MASTER_LAYOUT.md`](docs/MASTER_LAYOUT.md)** — the master
+grid and slot indices, naming, adapters, editing, board sourcing (module vs.
+vendored), config, and verification.
 
 ## Boards
 
