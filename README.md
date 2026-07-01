@@ -8,8 +8,12 @@ every board.
 ## How it works (Strategy B: master layout + per-board adapter)
 
 - **`config/shared/master_layers.dtsi`** holds every layer's content as `KM_<layer>`
-  macros over a fixed set of named *master slots* (currently a 3x5 + 2-thumbs/side
-  core). This is the single source of truth, written as a readable key grid.
+  macros over a fixed set of named *master slots*. The master is a maximal
+  **6 rows x 7 columns per hand + 3 thumbs per hand** grid (90 slots); the middle
+  5 columns x 3 rows + inner 2 thumbs are the shared core that is actually populated,
+  and every other slot (outer/inner-extra columns, function/number/extra rows, outer
+  thumb) is reserved for future boards (`&none`/`&trans`). This is the single source
+  of truth, written as a readable key grid.
 - **`config/geometry/geom_<board>.h`** provides, for one board:
   - `POS_*` symbols mapping logical key positions to that board's physical numbers
     (used by `combos.dtsi` and `behaviors.dtsi` — no raw number lives in `shared/`), and

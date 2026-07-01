@@ -1,22 +1,31 @@
 /*
  * master_layers.dtsi — the single source of truth for layer content.
  *
- * Each layer is one KM_<layer> macro listing the 34 canonical master slots in a
- * fixed order, comma-separated (one macro argument per slot). A board's geometry
- * header (config/geometry/geom_<board>.h) provides the LAYOUT() adapter that
- * places these slots onto that board's physical matrix, dropping/padding as
- * needed. A board's <board>.keymap consumes them as `bindings = <LAYOUT(KM_base)>`.
+ * Each layer is one KM_<layer> macro listing the full master grid in a fixed
+ * order, comma-separated (one macro argument per slot). A board's geometry header
+ * (config/geometry/geom_<board>.h) provides the LAYOUT() adapter that places these
+ * slots onto that board's physical matrix, dropping/padding as needed. A board's
+ * <board>.keymap consumes them as `bindings = <KEYMAP_LAYER(KM_base)>`.
  *
- * Canonical slot order (34 = pure 3x5 + 2-thumbs/side core):
- *      LT0 LT1 LT2 LT3 LT4 | RT4 RT3 RT2 RT1 RT0     row 0
- *      LM0 LM1 LM2 LM3 LM4 | RM4 RM3 RM2 RM1 RM0     row 1 (home)
- *      LB0 LB1 LB2 LB3 LB4 | RB4 RB3 RB2 RB1 RB0     row 2
- *              LH0 LH1     | RH1 RH0                 thumbs
+ * MAXIMAL MASTER GRID: 6 rows x 7 columns per hand + 3 thumbs per hand = 90 slots.
+ * Columns run outer -> inner; the middle 5 per hand are the shared 3x5 core.
  *
- * Content is the canonical TOTEM Colemak-DH layout (base, nav, num, fun, pad).
- * Optional slot groups (outer column, 3rd thumb, number row, center) are not yet
- * part of the master; they will be appended here when the first board that needs
- * them is migrated, leaving existing boards untouched.
+ *   cols/hand (outer->inner):  OUT  pinky ring mid index inner  INX
+ *                              └new  └────── core (5) ──────┘  └new
+ *   rows (top->bottom):  FN  NUM  TOP(core)  HOME(core)  BOT(core)  EXT
+ *   thumbs/hand:         TH_O(new)  TH_M(core)  TH_I(core)
+ *
+ * Canonical slot order = row-major, both hands per row (left cols outer->inner,
+ * then right cols inner->outer), rows FN..EXT, then the 6 thumbs
+ * (L_TH_O, L_TH_M, L_TH_I, R_TH_I, R_TH_M, R_TH_O). Indices:
+ *   FN  s00..s13   NUM s14..s27   TOP s28..s41   HOME s42..s55
+ *   BOT s56..s69   EXT s70..s83   thumbs s84..s89
+ * Within a row: [L: OUT pinky ring mid index inner INX] [R: INX inner index mid ring pinky OUT]
+ *
+ * Content is the canonical TOTEM Colemak-DH layout, placed in the core cells only.
+ * All optional cells (OUT/INX columns, FN/NUM/EXT rows, TH_O thumbs) are reserved
+ * for future boards: &none on `base`, &trans on higher layers. Populate them here
+ * (shared) only when a board that has those physical keys is migrated.
  */
 
 #pragma once
@@ -31,34 +40,50 @@
 
 /* clang-format off */
 
+/*            OUT     pinky        ring          middle         index          inner      INX        INX     inner        index          middle         ring           pinky       OUT   */
 #define KM_base \
-    &kp Q,        &kp W,         &kp F,          &kp P,          &kp B,       &kp J,        &kp L,          &kp U,          &kp Y,           &kp SEMI, \
-    &hmg LGUI A,  &hmla LALT R,  &hmls LSHFT S,  &hmlc LCTRL T,  &kp G,       &kp M,        &hmrc RCTRL N,  &hmrs RSHFT E,  &hmla LALT I,    &hmg RGUI O, \
-    &kp Z,        &hmra RALT X,  &kp C,          &kp D,          &kp V,       &kp K,        &kp H,          &kp COMMA,      &hmra RALT DOT,  &kp FSLH, \
-    &mt LC(LS(LALT)) ESC,        &lt 1 RET,                      &lt 2 SPACE,                &mt LC(LS(LALT)) DEL
+/* FN   */    &none,  &none,       &none,        &none,         &none,         &none,     &none,     &none,  &none,       &none,         &none,         &none,         &none,      &none, \
+/* NUM  */    &none,  &none,       &none,        &none,         &none,         &none,     &none,     &none,  &none,       &none,         &none,         &none,         &none,      &none, \
+/* TOP  */    &none,  &kp Q,       &kp W,        &kp F,         &kp P,         &kp B,     &none,     &none,  &kp J,       &kp L,         &kp U,         &kp Y,         &kp SEMI,   &none, \
+/* HOME */    &none,  &hmg LGUI A, &hmla LALT R, &hmls LSHFT S, &hmlc LCTRL T, &kp G,     &none,     &none,  &kp M,       &hmrc RCTRL N, &hmrs RSHFT E, &hmla LALT I,  &hmg RGUI O,&none, \
+/* BOT  */    &none,  &kp Z,       &hmra RALT X, &kp C,         &kp D,         &kp V,     &none,     &none,  &kp K,       &kp H,         &kp COMMA,     &hmra RALT DOT,&kp FSLH,   &none, \
+/* EXT  */    &none,  &none,       &none,        &none,         &none,         &none,     &none,     &none,  &none,       &none,         &none,         &none,         &none,      &none, \
+/* THMB */    &none,  &mt LC(LS(LALT)) ESC,  &lt 1 RET,    &lt 2 SPACE,  &mt LC(LS(LALT)) DEL,  &none
 
 #define KM_nav \
-    &kp ESC,      &kp PSCRN,        &kp UP,    &kp INS,    &kp PG_UP,    &bt BT_SEL 0,  &bt BT_SEL 1,  &bt BT_SEL 2,  &bt BT_SEL 3,  &bt BT_SEL 4, \
-    &kp HOME,     &kp LEFT,         &kp DOWN,  &kp RIGHT,  &kp END,      &kp K_APP,     &kp RCTRL,     &kp RSHFT,     &kp LALT,      &kp RGUI, \
-    &kp SLCK,     &kp PAUSE_BREAK,  &kp BSPC,  &kp DEL,    &kp PG_DN,    &none,         &bt BT_PRV,    &bt BT_NXT,    &kp RALT,      &bt BT_CLR, \
-    &none,        &none,                                   &mo 3,                       &none
+/* FN   */    &trans, &trans,       &trans,   &trans,    &trans,     &trans,        &trans,    &trans, &trans,       &trans,       &trans,       &trans,       &trans,      &trans, \
+/* NUM  */    &trans, &trans,       &trans,   &trans,    &trans,     &trans,        &trans,    &trans, &trans,       &trans,       &trans,       &trans,       &trans,      &trans, \
+/* TOP  */    &trans, &kp ESC,      &kp PSCRN,&kp UP,    &kp INS,    &kp PG_UP,     &trans,    &trans, &bt BT_SEL 0, &bt BT_SEL 1, &bt BT_SEL 2, &bt BT_SEL 3, &bt BT_SEL 4,&trans, \
+/* HOME */    &trans, &kp HOME,     &kp LEFT, &kp DOWN,  &kp RIGHT,  &kp END,       &trans,    &trans, &kp K_APP,    &kp RCTRL,    &kp RSHFT,    &kp LALT,     &kp RGUI,    &trans, \
+/* BOT  */    &trans, &kp SLCK,     &kp PAUSE_BREAK, &kp BSPC, &kp DEL, &kp PG_DN,   &trans,    &trans, &none,        &bt BT_PRV,   &bt BT_NXT,   &kp RALT,     &bt BT_CLR,  &trans, \
+/* EXT  */    &trans, &trans,       &trans,   &trans,    &trans,     &trans,        &trans,    &trans, &trans,       &trans,       &trans,       &trans,       &trans,      &trans, \
+/* THMB */    &trans, &none,        &none,       &mo 3,       &none,       &trans
 
 #define KM_num \
-    &kp RS(N1),   &kp RS(N2),      &kp RS(N3),      &kp RS(N4),      &kp RS(N5),   &kp LS(N6),  &kp LS(N7),      &kp LS(N8),      &kp LS(N9),      &kp LS(N0), \
-    &kp N1,       &hmla LALT N2,   &hmls LSHFT N3,  &hmlc LCTRL N4,  &kp N5,       &kp N6,      &hmrc RCTRL N7,  &hmrs RSHFT N8,  &hmla LALT N9,   &kp N0, \
-    &MCR_DEGREE,  &hmra RALT SQT,  &kp BSPC,        &kp DEL,         &kp LBKT,     &kp RBKT,    &none,           &kp COMMA,       &hmra RALT DOT,  &none, \
-    &none,        &tog 4,                                            &none,                     &none
+/* FN   */    &trans, &trans,       &trans,        &trans,        &trans,    &trans,   &trans,    &trans, &trans,       &trans,        &trans,        &trans,        &trans,   &trans, \
+/* NUM  */    &trans, &trans,       &trans,        &trans,        &trans,    &trans,   &trans,    &trans, &trans,       &trans,        &trans,        &trans,        &trans,   &trans, \
+/* TOP  */    &trans, &kp RS(N1),   &kp RS(N2),    &kp RS(N3),    &kp RS(N4),&kp RS(N5),&trans,   &trans, &kp LS(N6),   &kp LS(N7),    &kp LS(N8),    &kp LS(N9),    &kp LS(N0),&trans, \
+/* HOME */    &trans, &kp N1,       &hmla LALT N2, &hmls LSHFT N3,&hmlc LCTRL N4,&kp N5,&trans,   &trans, &kp N6,       &hmrc RCTRL N7,&hmrs RSHFT N8,&hmla LALT N9, &kp N0,   &trans, \
+/* BOT  */    &trans, &MCR_DEGREE,  &hmra RALT SQT,&kp BSPC,      &kp DEL,   &kp LBKT, &trans,    &trans, &kp RBKT,     &none,         &kp COMMA,     &hmra RALT DOT,&none,    &trans, \
+/* EXT  */    &trans, &trans,       &trans,        &trans,        &trans,    &trans,   &trans,    &trans, &trans,       &trans,        &trans,        &trans,        &trans,   &trans, \
+/* THMB */    &trans, &none,        &tog 4,      &none,       &none,       &trans
 
 #define KM_fun \
-    &kp F1,       &kp F2,    &kp F3,     &kp F4,     &kp F5,      &kp F6,   &kp F7,     &kp F8,     &kp F9,    &kp F10, \
-    &kp LGUI,     &kp LALT,  &kp LSHFT,  &kp LCTRL,  &kp F11,     &kp F12,  &kp RCTRL,  &kp RSHFT,  &kp LALT,  &kp RGUI, \
-    &none,        &kp RALT,  &none,      &none,      &none,       &none,    &none,      &none,      &kp RALT,  &none, \
-    &none,        &none,                              &none,                &none
+/* FN   */    &trans, &trans,       &trans,   &trans,    &trans,    &trans,    &trans,    &trans, &trans,   &trans,    &trans,    &trans,    &trans,   &trans, \
+/* NUM  */    &trans, &trans,       &trans,   &trans,    &trans,    &trans,    &trans,    &trans, &trans,   &trans,    &trans,    &trans,    &trans,   &trans, \
+/* TOP  */    &trans, &kp F1,       &kp F2,   &kp F3,    &kp F4,    &kp F5,    &trans,    &trans, &kp F6,   &kp F7,    &kp F8,    &kp F9,    &kp F10,  &trans, \
+/* HOME */    &trans, &kp LGUI,     &kp LALT, &kp LSHFT, &kp LCTRL, &kp F11,   &trans,    &trans, &kp F12,  &kp RCTRL, &kp RSHFT, &kp LALT,  &kp RGUI, &trans, \
+/* BOT  */    &trans, &none,        &kp RALT, &none,     &none,     &none,     &trans,    &trans, &none,    &none,     &none,     &kp RALT,  &none,    &trans, \
+/* EXT  */    &trans, &trans,       &trans,   &trans,    &trans,    &trans,    &trans,    &trans, &trans,   &trans,    &trans,    &trans,    &trans,   &trans, \
+/* THMB */    &trans, &none,        &none,       &none,       &none,       &trans
 
 #define KM_pad \
-    &to 0,        &none,  &none,     &none,    &none,      &kp FSLH,   &kp N7,  &kp N8,  &kp N9,  &kp MINUS, \
-    &none,        &none,  &none,     &none,    &none,      &kp STAR,   &kp N4,  &kp N5,  &kp N6,  &kp PLUS, \
-    &none,        &none,  &kp BSPC,  &kp DEL,  &none,      &kp DOT,    &kp N1,  &kp N2,  &kp N3,  &kp COMMA, \
-    &none,        &kp RET,                     &kp SPACE,              &kp N0
+/* FN   */    &trans, &trans,       &trans,   &trans,    &trans,    &trans,    &trans,    &trans, &trans,   &trans,   &trans,   &trans,   &trans,     &trans, \
+/* NUM  */    &trans, &trans,       &trans,   &trans,    &trans,    &trans,    &trans,    &trans, &trans,   &trans,   &trans,   &trans,   &trans,     &trans, \
+/* TOP  */    &trans, &to 0,        &none,    &none,     &none,     &none,     &trans,    &trans, &kp FSLH, &kp N7,   &kp N8,   &kp N9,   &kp MINUS,  &trans, \
+/* HOME */    &trans, &none,        &none,    &none,     &none,     &none,     &trans,    &trans, &kp STAR, &kp N4,   &kp N5,   &kp N6,   &kp PLUS,   &trans, \
+/* BOT  */    &trans, &none,        &none,    &kp BSPC,  &kp DEL,   &none,     &trans,    &trans, &kp DOT,  &kp N1,   &kp N2,   &kp N3,   &kp COMMA,  &trans, \
+/* EXT  */    &trans, &trans,       &trans,   &trans,    &trans,    &trans,    &trans,    &trans, &trans,   &trans,   &trans,   &trans,   &trans,     &trans, \
+/* THMB */    &trans, &none,        &kp RET,     &kp SPACE,   &kp N0,      &trans
 
 /* clang-format on */
