@@ -48,3 +48,13 @@ include:
   - board: xiao_ble//zmk
     shield: forager_right
     cmake-args: -DEXTRA_CONF_FILE=../../config/shared.conf
+
+  # --- corne_ul (nice!nano; standard foostan Corne shield, built into ZMK core) ---
+  # First superset (3x6+3); outer column + 3rd thumb map to reserved master slots
+  # (currently inactive). No module/vendoring needed.
+  - board: nice_nano//zmk
+    shield: corne_left
+    cmake-args: -DEXTRA_CONF_FILE=../../config/shared.conf
+  - board: nice_nano//zmk
+    shield: corne_right
+    cmake-args: -DEXTRA_CONF_FILE=../../config/shared.conf
