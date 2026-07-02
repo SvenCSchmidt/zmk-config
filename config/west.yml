@@ -10,6 +10,8 @@ manifest:
       url-base: https://github.com/rschenk
     - name: carrefinho
       url-base: https://github.com/carrefinho
+    - name: unspecworks
+      url-base: https://github.com/unspecworks
   projects:
     # Single, unified ZMK revision for every board in this repo.
     # The current boards (TOTEM on xiao_ble, cb34s + Urchin on nice_nano) are all
@@ -39,6 +41,10 @@ manifest:
     # forager split keyboard shield (module). Tracks zmk main.
     - name: forager-zmk-module
       remote: carrefinho
+      revision: main
+    # delta-omega split keyboard shield (module). Targets zmk main.
+    - name: zmk-keyboard-delta-omega
+      remote: unspecworks
       revision: main
   self:
     path: config

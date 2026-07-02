@@ -49,6 +49,14 @@ include:
     shield: forager_right
     cmake-args: -DEXTRA_CONF_FILE=../../config/shared.conf
 
+  # --- delta-omega (xiao_ble split; hardware from unspecworks/zmk-keyboard-delta-omega) ---
+  - board: xiao_ble//zmk
+    shield: delta_omega_left
+    cmake-args: -DEXTRA_CONF_FILE=../../config/shared.conf
+  - board: xiao_ble//zmk
+    shield: delta_omega_right
+    cmake-args: -DEXTRA_CONF_FILE=../../config/shared.conf
+
   # --- corne_ul (nice!nano; standard foostan Corne shield, built into ZMK core) ---
   # First superset (3x6+3); outer column + 3rd thumb map to reserved master slots
   # (currently inactive). No module/vendoring needed.
