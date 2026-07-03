@@ -1,0 +1,25 @@
+# Copyright (c) 2020 The ZMK Contributors
+# SPDX-License-Identifier: MIT
+
+if BOARD_CORNHOLIUS
+
+config ZMK_KEYBOARD_NAME
+	default "Cornholius"
+
+if USB_DEVICE_STACK
+
+config USB_NRFX
+	default y
+
+endif # USB_DEVICE_STACK
+
+config BT_CTLR
+	default BT
+
+config I2C
+	default y
+
+config MAX17048
+	default y
+
+endif # BOARD_CORNHOLIUS

@@ -45,6 +45,7 @@ vendored), config, and verification.
 | forager | `xiao_ble//zmk` + `forager_left/right` (module `carrefinho/forager-zmk-module`) | 3x5 + 2 thumbs/side |
 | corne (corne_ul) | `nice_nano//zmk` + `corne_left/right` (built into ZMK core) | 3x6 + 3 thumbs/side (outer column + 3rd thumb reserved/inactive) |
 | delta-omega | `xiao_ble//zmk` + `delta_omega_left/right` (module `unspecworks/zmk-keyboard-delta-omega`) | 3x5 + 2 thumbs/side |
+| Cornholius | `cornholius//zmk` (vendored HWv2 board in `boards/ebastler/cornholius/`, migrated from `ebastler/zmk-module-cornholius`) | 4x12 unibody, 48 keys (outer column + 4th-row outers + outer thumbs reserved/inactive) |
 
 Adding a board changes no shared content — see [`ADDING_A_BOARD.md`](ADDING_A_BOARD.md).
 

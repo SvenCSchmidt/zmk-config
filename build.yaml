@@ -57,6 +57,19 @@ include:
     shield: delta_omega_right
     cmake-args: -DEXTRA_CONF_FILE=../../config/shared.conf
 
+  # --- Cornholius (ebastler wireless nRF52840 unibody, drop-in PCB for the Foostan
+  # Cornelius). The upstream module (ebastler/zmk-module-cornholius) still ships the
+  # board in the old Zephyr HWv1 layout and pins zmk v0.3, so instead of a module we
+  # vendor a HWv2-migrated copy under boards/ebastler/cornholius/ (board_root is set
+  # in zephyr/module.yml) — builds against our unified zmk main, no pinning. Superset
+  # with a full 4th row (48 keys); outer column + 4th-row outers + outer thumbs map to
+  # reserved master slots (currently inactive), so it runs the canonical 34-key core. ---
+  - board: cornholius//zmk
+    cmake-args: -DEXTRA_CONF_FILE=../../config/shared.conf
+  - board: cornholius//zmk
+    shield: settings_reset
+    artifact-name: cornholius_settings_reset
+
   # --- corne_ul (nice!nano; standard foostan Corne shield, built into ZMK core) ---
   # First superset (3x6+3); outer column + 3rd thumb map to reserved master slots
   # (currently inactive). No module/vendoring needed.

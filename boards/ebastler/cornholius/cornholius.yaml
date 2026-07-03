@@ -1,0 +1,10 @@
+identifier: cornholius
+name: Cornholius
+type: mcu
+arch: arm
+toolchain:
+  - zephyr
+  - gnuarmemb
+supported:
+  - usb_device
+  - ble
