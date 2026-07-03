@@ -12,6 +12,8 @@ manifest:
       url-base: https://github.com/carrefinho
     - name: unspecworks
       url-base: https://github.com/unspecworks
+    - name: caksoylar
+      url-base: https://github.com/caksoylar
   projects:
     # Single, unified ZMK revision for every board in this repo.
     # The current boards (TOTEM on xiao_ble, cb34s + Urchin on nice_nano) are all
@@ -45,6 +47,13 @@ manifest:
     # delta-omega split keyboard shield (module). Targets zmk main.
     - name: zmk-keyboard-delta-omega
       remote: unspecworks
+      revision: main
+    # RGB LED status widget module. Required because zmk-keyboard-delta-omega's
+    # zephyr/module.yml declares a hard dependency on it — Zephyr's module resolver
+    # scans every workspace module for every board, so without this the whole build
+    # matrix fails (not just delta-omega). Tracks zmk main.
+    - name: zmk-rgbled-widget
+      remote: caksoylar
       revision: main
   self:
     path: config
