@@ -73,20 +73,15 @@
 #define POS_LHX 39   /* left  outer thumb (TH_O)        */
 #define POS_RHX 44   /* right outer thumb (TH_O)        */
 
-/* --- Layout adapter: 90 master slots -> 48 physical Cornholius positions ---
- * Rows 0-2 place the core (OUT columns -> master OUT slots). Row 3 places the
- * 6-thumb cluster (TH_O/TH_M/TH_I both hands) and the 6 outer modifier keys
- * (-> reserved EXT-row slots s70/71/72 and s81/82/83). */
-#define LAYOUT( \
-    /* FN   */ s00, s01, s02, s03, s04, s05, s06,   s07, s08, s09, s10, s11, s12, s13, \
-    /* NUM  */ s14, s15, s16, s17, s18, s19, s20,   s21, s22, s23, s24, s25, s26, s27, \
-    /* TOP  */ s28, s29, s30, s31, s32, s33, s34,   s35, s36, s37, s38, s39, s40, s41, \
-    /* HOME */ s42, s43, s44, s45, s46, s47, s48,   s49, s50, s51, s52, s53, s54, s55, \
-    /* BOT  */ s56, s57, s58, s59, s60, s61, s62,   s63, s64, s65, s66, s67, s68, s69, \
-    /* EXT  */ s70, s71, s72, s73, s74, s75, s76,   s77, s78, s79, s80, s81, s82, s83, \
-    /* THMB */ s84, s85, s86,   s87, s88, s89 \
-) \
-    s28 s29 s30 s31 s32 s33   s36 s37 s38 s39 s40 s41 \
-    s42 s43 s44 s45 s46 s47   s50 s51 s52 s53 s54 s55 \
-    s56 s57 s58 s59 s60 s61   s64 s65 s66 s67 s68 s69 \
-    s70 s71 s72 s84 s85 s86   s87 s88 s89 s81 s82 s83
+/* --- Layout adapter: weave the shared core into physical order ---
+ * Rows 0-2 have an outer pinky column; row 3 is the full 4th row (6-thumb cluster
+ * flanked by outer modifier keys). All non-core positions are not yet assigned, so
+ * they weave the reserved filler RSVD_<layer> (&none on base, &trans elsewhere).
+ * Row 3 left-to-right: 3 outer + outer thumb + 2 core thumbs (L) + 2 core thumbs (R)
+ * + outer thumb + 3 outer. Replace RSVD_##L with add-on fragments / hand-written
+ * bindings to activate the outer column and 4th row. */
+#define KEYMAP_LAYER(L) \
+    RSVD_##L CORE_##L##_top_L   CORE_##L##_top_R   RSVD_##L \
+    RSVD_##L CORE_##L##_home_L  CORE_##L##_home_R  RSVD_##L \
+    RSVD_##L CORE_##L##_bot_L   CORE_##L##_bot_R   RSVD_##L \
+    RSVD_##L RSVD_##L RSVD_##L RSVD_##L CORE_##L##_thumb_L CORE_##L##_thumb_R RSVD_##L RSVD_##L RSVD_##L RSVD_##L

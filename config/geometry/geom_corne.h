@@ -5,7 +5,7 @@
  * 3x5+2 core it has an outer pinky column (all 3 rows) and a 3rd (outer) thumb.
  *
  * Those extras are mapped to the master's optional OUT-column and TH_O slots, so
- * populating them in master_layers.dtsi automatically reaches Corne. They are
+ * populating them in core_blocks.dtsi automatically reaches Corne. They are
  * currently reserved (&none on base / &trans on higher layers) -> inactive for now.
  *
  * Physical position scheme (corne default_transform, 12 cols x 4 rows):
@@ -67,18 +67,14 @@
 #define POS_LHX 36   /* left  outer thumb (TH_O)  */
 #define POS_RHX 41   /* right outer thumb (TH_O)  */
 
-/* --- Layout adapter: 90 master slots -> 42 physical Corne positions ---
- * Emits the core plus the outer column (master OUT slots) and 3rd thumb (TH_O). */
-#define LAYOUT( \
-    /* FN   */ s00, s01, s02, s03, s04, s05, s06,   s07, s08, s09, s10, s11, s12, s13, \
-    /* NUM  */ s14, s15, s16, s17, s18, s19, s20,   s21, s22, s23, s24, s25, s26, s27, \
-    /* TOP  */ s28, s29, s30, s31, s32, s33, s34,   s35, s36, s37, s38, s39, s40, s41, \
-    /* HOME */ s42, s43, s44, s45, s46, s47, s48,   s49, s50, s51, s52, s53, s54, s55, \
-    /* BOT  */ s56, s57, s58, s59, s60, s61, s62,   s63, s64, s65, s66, s67, s68, s69, \
-    /* EXT  */ s70, s71, s72, s73, s74, s75, s76,   s77, s78, s79, s80, s81, s82, s83, \
-    /* THMB */ s84, s85, s86,   s87, s88, s89 \
-) \
-    s28 s29 s30 s31 s32 s33   s36 s37 s38 s39 s40 s41 \
-    s42 s43 s44 s45 s46 s47   s50 s51 s52 s53 s54 s55 \
-    s56 s57 s58 s59 s60 s61   s64 s65 s66 s67 s68 s69 \
-            s84 s85 s86       s87 s88 s89
+/* --- Layout adapter: weave the shared core into physical order ---
+ * Corne has an outer pinky column on all three rows and a 3rd (outer) thumb per
+ * hand. Their content is not yet assigned, so those positions weave the reserved
+ * filler RSVD_<layer> (&none on base, &trans elsewhere). To activate the outer
+ * column, replace the leading/trailing RSVD_##L with a shared add-on fragment
+ * (config/shared/addons/outer_col.h) or hand-written bindings. */
+#define KEYMAP_LAYER(L) \
+    RSVD_##L CORE_##L##_top_L   CORE_##L##_top_R   RSVD_##L \
+    RSVD_##L CORE_##L##_home_L  CORE_##L##_home_R  RSVD_##L \
+    RSVD_##L CORE_##L##_bot_L   CORE_##L##_bot_R   RSVD_##L \
+    RSVD_##L CORE_##L##_thumb_L CORE_##L##_thumb_R RSVD_##L

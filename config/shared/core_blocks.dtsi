@@ -1,0 +1,106 @@
+/*
+ * core_blocks.dtsi — the single source of truth for the SHARED 3x5 + 2-thumb core.
+ *
+ * The core is the part every board has in common. It is exposed here as small,
+ * composable fragments — one per layer, per row, per hand — each expanding to a
+ * space-separated list of ZMK bindings (no commas, so each fits straight into a
+ * `bindings = <...>` array):
+ *
+ *   CORE_<layer>_top_L    CORE_<layer>_top_R      row 0 (top alpha)
+ *   CORE_<layer>_home_L   CORE_<layer>_home_R     row 1 (home, with HomeRowMods)
+ *   CORE_<layer>_bot_L    CORE_<layer>_bot_R      row 2 (bottom alpha)
+ *   CORE_<layer>_thumb_L  CORE_<layer>_thumb_R    inner 2 thumbs per hand
+ *
+ * layer ∈ { base, nav, num, fun, pad }. Content is the canonical TOTEM Colemak-DH.
+ *
+ * A board's config/geometry/geom_<board>.h defines KEYMAP_LAYER(L) by weaving these
+ * fragments into that board's physical matrix order — inserting any board-specific
+ * extra keys (outer column, number row, inner keys, `&none` for dead positions,
+ * `&kp ESC` top-left) by hand, and pulling shared extra structures from
+ * config/shared/addons/*.h. Encoders are separate (`sensor-bindings`), not here.
+ *
+ * Change a core key here once -> every board rebuilds with it. Board-specific edges
+ * live in the board's geom/keymap, never in this file.
+ */
+
+#pragma once
+
+/* clang-format off */
+
+/* ============================ base (Colemak-DH) ============================ */
+#define CORE_base_top_L    &kp Q          &kp W          &kp F          &kp P          &kp B
+#define CORE_base_top_R    &kp J          &kp L          &kp U          &kp Y          &kp SEMI
+#define CORE_base_home_L   &hmg LGUI A    &hmla LALT R   &hmls LSHFT S  &hmlc LCTRL T  &kp G
+#define CORE_base_home_R   &kp M          &hmrc RCTRL N  &hmrs RSHFT E  &hmla LALT I   &hmg RGUI O
+#define CORE_base_bot_L    &kp Z          &hmra RALT X   &kp C          &kp D          &kp V
+#define CORE_base_bot_R    &kp K          &kp H          &kp COMMA      &hmra RALT DOT &kp FSLH
+#define CORE_base_thumb_L  &mt LC(LS(LALT)) ESC   &lt 1 RET
+#define CORE_base_thumb_R  &lt 2 SPACE            &mt LC(LS(LALT)) DEL
+
+/* ================================== nav =================================== */
+#define CORE_nav_top_L     &kp ESC        &kp PSCRN      &kp UP         &kp INS        &kp PG_UP
+#define CORE_nav_top_R     &bt BT_SEL 0   &bt BT_SEL 1   &bt BT_SEL 2   &bt BT_SEL 3   &bt BT_SEL 4
+#define CORE_nav_home_L    &kp HOME       &kp LEFT       &kp DOWN       &kp RIGHT      &kp END
+#define CORE_nav_home_R    &kp K_APP      &kp RCTRL      &kp RSHFT      &kp LALT       &kp RGUI
+#define CORE_nav_bot_L     &kp SLCK       &kp PAUSE_BREAK &kp BSPC      &kp DEL        &kp PG_DN
+#define CORE_nav_bot_R     &none          &bt BT_PRV     &bt BT_NXT     &kp RALT       &bt BT_CLR
+#define CORE_nav_thumb_L   &none          &none
+#define CORE_nav_thumb_R   &mo 3          &none
+
+/* ================================== num =================================== */
+#define CORE_num_top_L     &kp RS(N1)     &kp RS(N2)     &kp RS(N3)     &kp RS(N4)     &kp RS(N5)
+#define CORE_num_top_R     &kp LS(N6)     &kp LS(N7)     &kp LS(N8)     &kp LS(N9)     &kp LS(N0)
+#define CORE_num_home_L    &kp N1         &hmla LALT N2  &hmls LSHFT N3 &hmlc LCTRL N4 &kp N5
+#define CORE_num_home_R    &kp N6         &hmrc RCTRL N7 &hmrs RSHFT N8 &hmla LALT N9  &kp N0
+#define CORE_num_bot_L     &MCR_DEGREE    &hmra RALT SQT &kp BSPC       &kp DEL        &kp LBKT
+#define CORE_num_bot_R     &kp RBKT       &none          &kp COMMA      &hmra RALT DOT &none
+#define CORE_num_thumb_L   &none          &tog 4
+#define CORE_num_thumb_R   &none          &none
+
+/* ================================== fun =================================== */
+#define CORE_fun_top_L     &kp F1         &kp F2         &kp F3         &kp F4         &kp F5
+#define CORE_fun_top_R     &kp F6         &kp F7         &kp F8         &kp F9         &kp F10
+#define CORE_fun_home_L    &kp LGUI       &kp LALT       &kp LSHFT      &kp LCTRL      &kp F11
+#define CORE_fun_home_R    &kp F12        &kp RCTRL      &kp RSHFT      &kp LALT       &kp RGUI
+#define CORE_fun_bot_L     &none          &kp RALT       &none          &none          &none
+#define CORE_fun_bot_R     &none          &none          &none          &kp RALT       &none
+#define CORE_fun_thumb_L   &none          &none
+#define CORE_fun_thumb_R   &none          &none
+
+/* ================================== pad =================================== */
+#define CORE_pad_top_L     &to 0          &none          &none          &none          &none
+#define CORE_pad_top_R     &kp FSLH       &kp N7         &kp N8         &kp N9         &kp MINUS
+#define CORE_pad_home_L    &none          &none          &none          &none          &none
+#define CORE_pad_home_R    &kp STAR       &kp N4         &kp N5         &kp N6         &kp PLUS
+#define CORE_pad_bot_L     &none          &none          &kp BSPC       &kp DEL        &none
+#define CORE_pad_bot_R     &kp DOT        &kp N1         &kp N2         &kp N3         &kp COMMA
+#define CORE_pad_thumb_L   &none          &kp RET
+#define CORE_pad_thumb_R   &kp SPACE      &kp N0
+
+/* =========================== weave helpers ================================ */
+
+/*
+ * WEAVE_CORE(L) — the full 34-key core in canonical reading order (top, home,
+ * bottom, thumbs; left hand then right hand per row). A pure 3x5+2 board's
+ * geom_<board>.h just does `#define KEYMAP_LAYER(L) WEAVE_CORE(L)`.
+ */
+#define WEAVE_CORE(L) \
+    CORE_##L##_top_L   CORE_##L##_top_R   \
+    CORE_##L##_home_L  CORE_##L##_home_R  \
+    CORE_##L##_bot_L   CORE_##L##_bot_R   \
+    CORE_##L##_thumb_L CORE_##L##_thumb_R
+
+/*
+ * RSVD_<layer> — a single reserved/inactive edge key: `&none` on base (so the
+ * physical key does nothing) and `&trans` on the higher layers (so it falls
+ * through). Boards that physically HAVE an extra key but whose content is not yet
+ * decided weave `RSVD_##L` at that position. Replace with a real add-on fragment
+ * (config/shared/addons/*.h) or a hand-written binding to activate the key.
+ */
+#define RSVD_base  &none
+#define RSVD_nav   &trans
+#define RSVD_num   &trans
+#define RSVD_fun   &trans
+#define RSVD_pad   &trans
+
+/* clang-format on */

@@ -4,7 +4,7 @@
  * thumbs (32, 37) are unused (&none), leaving a pure 3x5 + 2-thumbs/side core.
  *
  * Two artifacts, both derived from this board's matrix-transform order:
- *   1. LAYOUT() — maps the 34 canonical master slots (see shared/master_layers.dtsi)
+ *   1. LAYOUT() — maps the 34 canonical master slots (see shared/core_blocks.dtsi)
  *      to TOTEM's physical bindings order, inserting &none at the dead positions.
  *   2. POS_*    — symbolic names for the physical key positions, used by
  *      shared/combos.dtsi and shared/behaviors.dtsi. No raw number lives in shared/.
@@ -64,23 +64,14 @@
 #define POS_RH0 36
 #define POS_RHX 37   /* right outer thumb (master TH_O) */
 
-/* --- Layout adapter: 90 master slots -> 38 physical TOTEM positions ---
- * Master grid is 6 rows x 7 cols/hand + 3 thumbs/hand (see master_layers.dtsi).
- * Besides the 3x5+2 core, TOTEM physically has the outer-pinky keys (master OUT
- * column, bottom row -> s56/s69) and the outer thumbs (master TH_O -> s84/s89),
- * so those master slots ARE emitted: populating them in master_layers.dtsi
- * automatically reaches TOTEM. The other optional slots (INX column, FN/NUM/EXT
- * rows, the OUT column on non-bottom rows) are not physical on TOTEM and dropped. */
-#define LAYOUT( \
-    /* FN   */ s00, s01, s02, s03, s04, s05, s06,   s07, s08, s09, s10, s11, s12, s13, \
-    /* NUM  */ s14, s15, s16, s17, s18, s19, s20,   s21, s22, s23, s24, s25, s26, s27, \
-    /* TOP  */ s28, s29, s30, s31, s32, s33, s34,   s35, s36, s37, s38, s39, s40, s41, \
-    /* HOME */ s42, s43, s44, s45, s46, s47, s48,   s49, s50, s51, s52, s53, s54, s55, \
-    /* BOT  */ s56, s57, s58, s59, s60, s61, s62,   s63, s64, s65, s66, s67, s68, s69, \
-    /* EXT  */ s70, s71, s72, s73, s74, s75, s76,   s77, s78, s79, s80, s81, s82, s83, \
-    /* THMB */ s84, s85, s86,   s87, s88, s89 \
-) \
-        s29 s30 s31 s32 s33   s36 s37 s38 s39 s40     \
-        s43 s44 s45 s46 s47   s50 s51 s52 s53 s54     \
-    s56 s57 s58 s59 s60 s61   s64 s65 s66 s67 s68 s69 \
-              s84 s85 s86     s87 s88 s89
+/* --- Layout adapter: weave the shared core into physical order ---
+ * TOP and HOME are pure 3x5 (no outer column). The BOTTOM row and the THUMB row
+ * physically have outer keys (the outer pinkies at 20/31 and the outer thumbs at
+ * 32/37); their content is board-specific and not yet assigned, so they weave the
+ * reserved filler RSVD_<layer> (&none on base, &trans elsewhere). Replace those
+ * with hand-written bindings to activate TOTEM's outer pinkies/thumbs. */
+#define KEYMAP_LAYER(L) \
+    CORE_##L##_top_L   CORE_##L##_top_R   \
+    CORE_##L##_home_L  CORE_##L##_home_R  \
+    RSVD_##L CORE_##L##_bot_L   CORE_##L##_bot_R   RSVD_##L \
+    RSVD_##L CORE_##L##_thumb_L CORE_##L##_thumb_R RSVD_##L

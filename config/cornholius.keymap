@@ -19,16 +19,16 @@
 #include "shared/behaviors.dtsi"
 #include "shared/macros.dtsi"
 #include "shared/combos.dtsi"
-#include "shared/master_layers.dtsi"
+#include "shared/core_blocks.dtsi"
 
 / {
     keymap {
         compatible = "zmk,keymap";
 
-        base { label = "base"; bindings = <KEYMAP_LAYER(KM_base)>; };
-        nav  { label = "nav";  bindings = <KEYMAP_LAYER(KM_nav)>;  };
-        num  { label = "num";  bindings = <KEYMAP_LAYER(KM_num)>;  };
-        fun  { label = "fun";  bindings = <KEYMAP_LAYER(KM_fun)>;  };
-        pad  { label = "pad";  bindings = <KEYMAP_LAYER(KM_pad)>;  };
+        base { label = "base"; bindings = <KEYMAP_LAYER(base)>; };
+        nav  { label = "nav";  bindings = <KEYMAP_LAYER(nav)>;  };
+        num  { label = "num";  bindings = <KEYMAP_LAYER(num)>;  };
+        fun  { label = "fun";  bindings = <KEYMAP_LAYER(fun)>;  };
+        pad  { label = "pad";  bindings = <KEYMAP_LAYER(pad)>;  };
     };
 };
