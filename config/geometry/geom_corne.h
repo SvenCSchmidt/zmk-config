@@ -4,9 +4,9 @@
  * first SUPERSET: 3x6 + 3 thumbs/side = 42 physical positions. Beyond the shared
  * 3x5+2 core it has an outer pinky column (all 3 rows) and a 3rd (outer) thumb.
  *
- * Those extras are mapped to the master's optional OUT-column and TH_O slots, so
- * populating them in core_blocks.dtsi automatically reaches Corne. They are
- * currently reserved (&none on base / &trans on higher layers) -> inactive for now.
+ * The outer pinky column is populated from the shared add-on config/shared/addons/
+ * outer_col.h (Esc / - / Cadet-( on the left, ' / \ / Cadet-) on the right; higher
+ * layers transparent). The 3rd (outer) thumb stays reserved (RSVD) for now.
  *
  * Physical position scheme (corne default_transform, 12 cols x 4 rows):
  *    0  1  2  3  4  5 |  6  7  8  9 10 11      row 0   (0 & 11 = outer pinkies)
@@ -67,14 +67,15 @@
 #define POS_LHX 36   /* left  outer thumb (TH_O)  */
 #define POS_RHX 41   /* right outer thumb (TH_O)  */
 
+/* Outer pinky column content (guarded; a board could override before this include). */
+#include "../shared/addons/outer_col.h"
+
 /* --- Layout adapter: weave the shared core into physical order ---
- * Corne has an outer pinky column on all three rows and a 3rd (outer) thumb per
- * hand. Their content is not yet assigned, so those positions weave the reserved
- * filler RSVD_<layer> (&none on base, &trans elsewhere). To activate the outer
- * column, replace the leading/trailing RSVD_##L with a shared add-on fragment
- * (config/shared/addons/outer_col.h) or hand-written bindings. */
+ * Outer pinky column (top/home/bottom, both hands) = OUTER_<layer>_* from the
+ * add-on; the 3x5 core = CORE_<layer>_*; the 3rd (outer) thumb per hand is not yet
+ * assigned, so it weaves the reserved filler RSVD_<layer>. */
 #define KEYMAP_LAYER(L) \
-    RSVD_##L CORE_##L##_top_L   CORE_##L##_top_R   RSVD_##L \
-    RSVD_##L CORE_##L##_home_L  CORE_##L##_home_R  RSVD_##L \
-    RSVD_##L CORE_##L##_bot_L   CORE_##L##_bot_R   RSVD_##L \
-    RSVD_##L CORE_##L##_thumb_L CORE_##L##_thumb_R RSVD_##L
+    OUTER_##L##_top_L  CORE_##L##_top_L   CORE_##L##_top_R   OUTER_##L##_top_R \
+    OUTER_##L##_home_L CORE_##L##_home_L  CORE_##L##_home_R  OUTER_##L##_home_R \
+    OUTER_##L##_bot_L  CORE_##L##_bot_L   CORE_##L##_bot_R   OUTER_##L##_bot_R \
+    RSVD_##L           CORE_##L##_thumb_L CORE_##L##_thumb_R RSVD_##L

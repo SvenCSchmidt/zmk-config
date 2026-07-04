@@ -90,5 +90,20 @@
             flavor = "tap-preferred";
             bindings = <&kp>, <&kp>;
         };
+        /*
+         * Space-Cadet Shift: hold = the given shift modifier, tap = the given key
+         * (a bracket). Used generically, e.g. `&cadet LSHFT LPAR` (opening) and
+         * `&cadet RSHFT RPAR` (closing). Balanced flavor so it still shifts the next
+         * key when tapped-then-held quickly.
+         */
+        cadet: cadet_shift {
+            compatible = "zmk,behavior-hold-tap";
+            label = "CADET_SHIFT";
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            quick-tap-ms = <0>;
+            flavor = "balanced";
+            bindings = <&kp>, <&kp>;
+        };
     };
 };
