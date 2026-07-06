@@ -9,7 +9,7 @@
  *           30 31  | 32 33                 thumbs
  *
  * The 30 alpha positions come from the shared core_3x5.h; this file only adds the
- * 2 thumbs/hand. Boards using it: re-gret, delta-omega, sweep.
+ * 2 thumbs/hand. Boards using it: cb34s, Urchin, re-gret, delta-omega, sweep.
  */
 
 #pragma once
