@@ -89,3 +89,10 @@ include:
   - board: nice_nano//zmk
     shield: klotz_right
     cmake-args: -DEXTRA_CONF_FILE=../../config/shared.conf
+
+  # --- Splaytoraid40 (wired RP2040 unibody; vendored shield in boards/shields/
+  # splaytoraid40). USB only (no BLE), so it does NOT use the BLE-centric shared.conf
+  # — its hardware-agnostic settings live in config/splaytoraid40.conf, auto-applied
+  # by ZMK for this shield. Outer column (top+home) + center encoder. ---
+  - board: sparkfun_pro_micro_rp2040//zmk
+    shield: splaytoraid40

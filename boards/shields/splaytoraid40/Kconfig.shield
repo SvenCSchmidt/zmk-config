@@ -1,0 +1,2 @@
+config SHIELD_SPLAYTORAID40
+    def_bool $(shields_list_contains,splaytoraid40)

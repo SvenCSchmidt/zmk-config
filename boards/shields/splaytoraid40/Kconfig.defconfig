@@ -1,0 +1,6 @@
+if SHIELD_SPLAYTORAID40
+
+config ZMK_KEYBOARD_NAME
+    default "Splaytoraid40"
+
+endif

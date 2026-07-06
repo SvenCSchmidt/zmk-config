@@ -1,0 +1,10 @@
+file_format: "1"
+id: splaytoraid40
+name: Splaytoraid40
+type: shield
+requires: [pro_micro]
+features:
+  - keys
+  - encoder
+  - backlight
+  - underglow
