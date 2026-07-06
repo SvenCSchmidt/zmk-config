@@ -1,0 +1,22 @@
+# Copyright (c) 2021 @MangoIV
+# SPDX-License-Identifier: MIT
+
+if BOARD_LE_CHIFF_BLE
+
+config ZMK_KEYBOARD_NAME
+	default "BLE Chiffre"
+
+if USB_DEVICE_STACK
+
+config USB_NRFX
+	default y
+
+endif # USB_DEVICE_STACK
+
+config BT_CTLR
+	default BT
+
+config ZMK_BATTERY_VOLTAGE_DIVIDER
+	default y
+
+endif # BOARD_LE_CHIFF_BLE

@@ -130,3 +130,13 @@ include:
   - board: xiao_ble//zmk
     shield: le_oeuf
     cmake-args: -DEXTRA_CONF_FILE=../../config/shared_ble.conf
+
+  # --- Le Chiffre BLE ("BLE Chiffre", MangoIV) — vendored HWv2 nRF52840 unibody
+  # board in boards/mangoiv/le_chiff_ble/ (migrated from the HWv1 board in
+  # zmk-config-chiffre). 3x5 core + center key (Mute) + 2 thumbs/hand + center
+  # encoder. OLED display off for now. ---
+  - board: le_chiff_ble//zmk
+    cmake-args: -DEXTRA_CONF_FILE=../../config/shared_ble.conf
+  - board: le_chiff_ble//zmk
+    shield: settings_reset
+    artifact-name: le_chiff_ble_settings_reset

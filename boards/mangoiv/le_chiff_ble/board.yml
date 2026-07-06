@@ -1,0 +1,8 @@
+board:
+  name: le_chiff_ble
+  full_name: Le Chiffre BLE
+  vendor: mangoiv
+  socs:
+    - name: nrf52840
+      variants:
+        - name: zmk

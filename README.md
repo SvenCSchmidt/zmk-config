@@ -54,6 +54,7 @@ vendored), config, and verification.
 | sweep | `nice_nano//zmk` + `cradio_left/right` (built into ZMK core) | Ferris Sweep, 3x5 + 2 thumbs/side |
 | MNHTTN | `xiao_ble//zmk` + `mnhttn_left/right` (vendored shield in `boards/shields/mnhttn/`) | 3x5 + 3 thumbs/side (outer thumb reserved) |
 | le_oeuf / Onyx Cinder | `xiao_ble//zmk` + `le_oeuf` (vendored shield in `boards/shields/le_oeuf/`) | unibody 36 keys, 3x5 + 3 thumbs/side (595 shift-register rows over SPI) |
+| Le Chiffre BLE | `le_chiff_ble//zmk` (vendored HWv2 board in `boards/mangoiv/le_chiff_ble/`, migrated from `MangoIV/le_chiff_ble`) | nRF52840 unibody, 35 keys: 3x5 core + center key (Mute) + 2 thumbs/side + center encoder (vol); OLED off for now |
 
 Adding a board changes no shared content — see [`ADDING_A_BOARD.md`](ADDING_A_BOARD.md).
 
