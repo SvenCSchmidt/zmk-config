@@ -1,15 +1,39 @@
 # The master layout — how this repo works
 
-This repo compiles **one** keymap for **many** keyboards. All layer content lives
-once in `config/shared/`; each board only carries a thin *geometry adapter* that
-places that content onto its physical keys at compile time. This document explains
-the master layout in detail: the grid, the naming, how a board consumes it, how to
-edit it, and how it is verified.
+This repo compiles **one** keymap for **many** keyboards. All shared content lives
+once in `config/shared/`; each board only carries a thin *geometry adapter*
+(`config/geometry/geom_<board>.h`) that weaves that content onto its physical keys
+at compile time.
 
-> TL;DR mental model: `master_layers.dtsi` is a big keyboard-shaped grid of key
-> bindings. A board's `geom_<board>.h` is a stencil that picks the holes that board
-> physically has and lays them out in that board's wiring order. Editing the grid
-> changes every board at once.
+> TL;DR mental model: the shared **core** (3x5 + 2 thumbs) is defined once as small
+> per-layer/row/hand blocks in `config/shared/core_blocks.dtsi`. Reusable **add-ons**
+> (`config/shared/addons/*.h`) hold extra structures that several boards share (the
+> outer pinky column, the 3rd thumb). Each `geom_<board>.h` picks which of these a
+> board physically has and weaves them in its wiring order; anything a board doesn't
+> share it writes by hand. Editing shared content changes every affected board at once.
+
+### Change once → edit exactly one file
+
+The whole point: a change that affects many boards touches **one** file.
+
+| What you change | The one file to edit | Reaches |
+|---|---|---|
+| A core key / HomeRowMod / core thumb | `config/shared/core_blocks.dtsi` | every board |
+| A combo | `config/shared/combos.dtsi` | every board |
+| A macro | `config/shared/macros.dtsi` | every board |
+| A behavior (HRM timing, Cadet Shift) | `config/shared/behaviors.dtsi` | every board |
+| The outer pinky column (Esc/Tab/…) | `config/shared/addons/outer_col.h` | Corne, Cornholius, Splaytoraid |
+| The 3rd (outer) thumb | `config/shared/addons/thumb_outer.h` | every board that has one |
+| Common BLE settings | `config/shared_ble.conf` | every wireless board |
+| Common USB settings | `config/shared_usb.conf` | every wired RP2040 board |
+
+A `geom_<board>.h` contains **only** that board's physical position numbers (its
+wiring) and its weave order — you never touch it for a content change, only when a
+board is added or rewired. So no shared content is ever duplicated across boards.
+
+> Note: the sections below still describe the earlier 90-slot "master grid" model
+> (`master_layers.dtsi`), which has been replaced by the `core_blocks.dtsi` +
+> add-ons composition above. They are pending a rewrite.
 
 ---
 

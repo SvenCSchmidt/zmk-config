@@ -1,11 +1,16 @@
 /*
  * Geometry adapter for the TOTEM (GEIGEIGEIST) split — shield totem_left/right
- * on xiao_ble. 38 physical positions; the outer pinkies (20, 31) and the outer
- * thumbs (32, 37) are unused (&none), leaving a pure 3x5 + 2-thumbs/side core.
+ * on xiao_ble. TOTEM is just another 3x5+2 board here: 38 physical positions, i.e.
+ * the shared core plus an outer pinky per hand on the bottom row (20, 31) and an
+ * outer thumb per hand (32, 37); those extras are currently reserved (RSVD).
+ *
+ * (Historical note: the shared keymap content was originally transcribed FROM the
+ * TOTEM keymap, but that content now lives neutrally in shared/core_blocks.dtsi —
+ * TOTEM is not a "master" or standard, it is a consumer like every other board.)
  *
  * Two artifacts, both derived from this board's matrix-transform order:
- *   1. LAYOUT() — maps the 34 canonical master slots (see shared/core_blocks.dtsi)
- *      to TOTEM's physical bindings order, inserting &none at the dead positions.
+ *   1. KEYMAP_LAYER(L) — weaves the shared core (core_blocks.dtsi) into TOTEM's
+ *      physical order, using RSVD_<layer> at the reserved outer positions.
  *   2. POS_*    — symbolic names for the physical key positions, used by
  *      shared/combos.dtsi and shared/behaviors.dtsi. No raw number lives in shared/.
  *
