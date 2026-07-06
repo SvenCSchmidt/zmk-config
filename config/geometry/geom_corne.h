@@ -67,15 +67,16 @@
 #define POS_LHX 36   /* left  outer thumb (TH_O)  */
 #define POS_RHX 41   /* right outer thumb (TH_O)  */
 
-/* Outer pinky column content (guarded; a board could override before this include). */
+/* Outer pinky column + 3rd thumb (guarded; a board could override before include). */
 #include "../shared/addons/outer_col.h"
+#include "../shared/addons/thumb_outer.h"
 
 /* --- Layout adapter: weave the shared core into physical order ---
  * Outer pinky column (top/home/bottom, both hands) = OUTER_<layer>_* from the
- * add-on; the 3x5 core = CORE_<layer>_*; the 3rd (outer) thumb per hand is not yet
- * assigned, so it weaves the reserved filler RSVD_<layer>. */
+ * add-on; the 3x5 core = CORE_<layer>_*; the 3rd (outer) thumb per hand =
+ * THUMB_O_<layer>_* (shared add-on, unused by default). */
 #define KEYMAP_LAYER(L) \
-    OUTER_##L##_top_L  CORE_##L##_top_L   CORE_##L##_top_R   OUTER_##L##_top_R \
-    OUTER_##L##_home_L CORE_##L##_home_L  CORE_##L##_home_R  OUTER_##L##_home_R \
-    OUTER_##L##_bot_L  CORE_##L##_bot_L   CORE_##L##_bot_R   OUTER_##L##_bot_R \
-    RSVD_##L           CORE_##L##_thumb_L CORE_##L##_thumb_R RSVD_##L
+    OUTER_##L##_top_L   CORE_##L##_top_L   CORE_##L##_top_R   OUTER_##L##_top_R \
+    OUTER_##L##_home_L  CORE_##L##_home_L  CORE_##L##_home_R  OUTER_##L##_home_R \
+    OUTER_##L##_bot_L   CORE_##L##_bot_L   CORE_##L##_bot_R   OUTER_##L##_bot_R \
+    THUMB_O_##L##_L     CORE_##L##_thumb_L CORE_##L##_thumb_R THUMB_O_##L##_R

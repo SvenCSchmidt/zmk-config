@@ -82,6 +82,7 @@
 #define OUTER_base_top_R   &kp BSPC     /* Cornholius: Backspace (default was ') */
 #define OUTER_base_home_R  &kp RET      /* Cornholius: Enter (default was  \ ) */
 #include "../shared/addons/outer_col.h"
+#include "../shared/addons/thumb_outer.h"
 
 /* --- 4th-row outer modifier keys (Cornholius-specific) ---
  * The lower row's outer triplets: left = Ctrl/Win/Alt, right (physical L->R) =
@@ -106,4 +107,4 @@
     OUTER_##L##_top_L  CORE_##L##_top_L   CORE_##L##_top_R   OUTER_##L##_top_R \
     OUTER_##L##_home_L CORE_##L##_home_L  CORE_##L##_home_R  OUTER_##L##_home_R \
     OUTER_##L##_bot_L  CORE_##L##_bot_L   CORE_##L##_bot_R   OUTER_##L##_bot_R \
-    C_R3_##L##_L RSVD_##L CORE_##L##_thumb_L CORE_##L##_thumb_R RSVD_##L C_R3_##L##_R
+    C_R3_##L##_L THUMB_O_##L##_L CORE_##L##_thumb_L CORE_##L##_thumb_R THUMB_O_##L##_R C_R3_##L##_R

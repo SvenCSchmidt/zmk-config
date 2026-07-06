@@ -46,6 +46,7 @@ vendored), config, and verification.
 | corne (corne_ul) | `nice_nano//zmk` + `corne_left/right` (built into ZMK core) | 3x6 + 3 thumbs/side (outer column active via `addons/outer_col.h`; 3rd thumb reserved) |
 | delta-omega | `xiao_ble//zmk` + `delta_omega_left/right` (module `unspecworks/zmk-keyboard-delta-omega`) | 3x5 + 2 thumbs/side |
 | Cornholius | `cornholius//zmk` (vendored HWv2 board in `boards/ebastler/cornholius/`, migrated from `ebastler/zmk-module-cornholius`) | 4x12 unibody, 48 keys (outer column + 4th-row modifiers active; outer thumbs reserved) |
+| KLOTZ | `nice_nano//zmk` + `klotz_left/right` (vendored shield in `boards/shields/klotz/`) | 3x5 + 2 thumbs/side + 1 rotary encoder per half (vol / cursor) |
 
 Adding a board changes no shared content — see [`ADDING_A_BOARD.md`](ADDING_A_BOARD.md).
 

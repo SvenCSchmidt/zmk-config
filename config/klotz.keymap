@@ -1,0 +1,39 @@
+/*
+ * KLOTZ (GEIGEIGEIST) — thin keymap. Split 3x5+2 on nice_nano; vendored shield in
+ * boards/shields/klotz/. Its matrix is a plain contiguous 0..33 core (thumbs 30/31
+ * left, 32/33 right), so it reuses the shared generic adapter geom_3x5_2.h.
+ *
+ * Two rotary encoders (separate from the key grid, so no geometry involved):
+ *   - left  encoder  -> volume down / up
+ *   - right encoder  -> cursor left / right
+ * The order in sensor-bindings matches sensors = <&left_encoder &right_encoder>.
+ * All key content lives in config/shared/.
+ */
+
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/outputs.h>
+
+#include "geometry/geom_3x5_2.h"
+
+#include "shared/keys_de.h"
+#include "shared/settings.dtsi"
+#include "shared/behaviors.dtsi"
+#include "shared/macros.dtsi"
+#include "shared/combos.dtsi"
+#include "shared/core_blocks.dtsi"
+
+#define ENCODERS  &inc_dec_kp C_VOL_DN C_VOL_UP   &inc_dec_kp LEFT RIGHT
+
+/ {
+    keymap {
+        compatible = "zmk,keymap";
+
+        base { label = "base"; bindings = <KEYMAP_LAYER(base)>; sensor-bindings = <ENCODERS>; };
+        nav  { label = "nav";  bindings = <KEYMAP_LAYER(nav)>;  sensor-bindings = <ENCODERS>; };
+        num  { label = "num";  bindings = <KEYMAP_LAYER(num)>;  sensor-bindings = <ENCODERS>; };
+        fun  { label = "fun";  bindings = <KEYMAP_LAYER(fun)>;  sensor-bindings = <ENCODERS>; };
+        pad  { label = "pad";  bindings = <KEYMAP_LAYER(pad)>;  sensor-bindings = <ENCODERS>; };
+    };
+};

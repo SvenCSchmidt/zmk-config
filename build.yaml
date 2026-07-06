@@ -79,3 +79,13 @@ include:
   - board: nice_nano//zmk
     shield: corne_right
     cmake-args: -DEXTRA_CONF_FILE=../../config/shared.conf
+
+  # --- KLOTZ (GEIGEIGEIST split, nice!nano; vendored shield in boards/shields/klotz).
+  # Pure 3x5+2 core plus one rotary encoder per half (EC11, enabled by the shield's
+  # klotz.conf). Built bare — no backlight/underglow. ---
+  - board: nice_nano//zmk
+    shield: klotz_left
+    cmake-args: -DEXTRA_CONF_FILE=../../config/shared.conf
+  - board: nice_nano//zmk
+    shield: klotz_right
+    cmake-args: -DEXTRA_CONF_FILE=../../config/shared.conf
