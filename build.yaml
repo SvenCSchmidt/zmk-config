@@ -121,3 +121,12 @@ include:
   - board: xiao_ble//zmk
     shield: mnhttn_right
     cmake-args: -DEXTRA_CONF_FILE=../../config/shared_ble.conf
+
+  # --- le_oeuf / "Onyx Cinder" (eggsworks unibody on xiao_ble; vendored shield in
+  # boards/shields/le_oeuf). 3x5 core + 3 thumbs/hand; rows driven by a 595 shift
+  # register over SPI (enabled by the shield's Kconfig.defconfig). If your Onyx
+  # Cinder is the wired RP2040 build instead, switch to seeeduino_xiao_rp2040//zmk
+  # + shared_usb.conf. ---
+  - board: xiao_ble//zmk
+    shield: le_oeuf
+    cmake-args: -DEXTRA_CONF_FILE=../../config/shared_ble.conf

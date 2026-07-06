@@ -53,6 +53,7 @@ vendored), config, and verification.
 | Splaytoraid36 | `nice_nano//zmk` + `splaytoraid36` (vendored shield in `boards/shields/splaytoraid36/`) | BLE, the Splaytoraid40 without the outer column: 3x5 core + 3 thumbs/hand + center encoder (vol/mute) |
 | sweep | `nice_nano//zmk` + `cradio_left/right` (built into ZMK core) | Ferris Sweep, 3x5 + 2 thumbs/side |
 | MNHTTN | `xiao_ble//zmk` + `mnhttn_left/right` (vendored shield in `boards/shields/mnhttn/`) | 3x5 + 3 thumbs/side (outer thumb reserved) |
+| le_oeuf / Onyx Cinder | `xiao_ble//zmk` + `le_oeuf` (vendored shield in `boards/shields/le_oeuf/`) | unibody 36 keys, 3x5 + 3 thumbs/side (595 shift-register rows over SPI) |
 
 Adding a board changes no shared content — see [`ADDING_A_BOARD.md`](ADDING_A_BOARD.md).
 

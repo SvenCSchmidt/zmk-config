@@ -1,9 +1,10 @@
 /*
- * Geometry adapter for the MNHTTN (fooker) split — shield mnhttn_left/right on
- * xiao_ble; vendored shield in boards/shields/mnhttn/. 36 physical positions:
- * a plain 3x5 core + 3 thumbs per hand (no outer column, no center key).
+ * geom_3x5_3.h — shared geometry adapter for any board whose physical matrix is a
+ * 3x5 core + 3 thumbs/hand numbered CONTIGUOUSLY 0..35 (row-major, both hands per
+ * row; thumbs 30/31/32 left, 33/34/35 right). No outer column, no center key.
+ * Analogous to geom_3x5_2.h, one thumb wider. Boards using it: MNHTTN, le_oeuf.
  *
- * Physical position scheme (from the shield's matrix_transform, keymap order):
+ * Physical position scheme:
  *    0  1  2  3  4 |  5  6  7  8  9        row 0 (top)
  *   10 11 12 13 14 | 15 16 17 18 19        row 1 (home)
  *   20 21 22 23 24 | 25 26 27 28 29        row 2 (bottom)
@@ -58,7 +59,7 @@
 #define POS_LHX 30   /* left  outer (3rd) thumb  */
 #define POS_RHX 35   /* right outer (3rd) thumb  */
 
-/* 3rd thumb (shared add-on; MNHTTN has no outer column and no center key). */
+/* 3rd thumb (shared add-on; no outer column, no center key on these boards). */
 #include "../shared/addons/thumb_outer.h"
 
 /* --- Layout adapter: pure 3x5 core + 3-thumb row (Variant A) --- */

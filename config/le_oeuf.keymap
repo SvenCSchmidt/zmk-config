@@ -1,7 +1,8 @@
 /*
- * MNHTTN (fooker) — thin keymap. Split on xiao_ble; vendored shield in
- * boards/shields/mnhttn/. 3x5 core + 3 thumbs/hand (Variant A: outer thumb is the
- * shared 3rd thumb, currently unused). All content lives in config/shared/.
+ * le_oeuf ("Onyx Cinder", eggsworks) — thin keymap. Unibody 36-key on xiao_ble
+ * (rows driven by a 595 shift register over SPI); vendored shield in
+ * boards/shields/le_oeuf/. 3x5 core + 3 thumbs/hand, contiguous 0..35, so it reuses
+ * the shared adapter geom_3x5_3.h (same as MNHTTN). All content lives in config/shared/.
  */
 
 #include <behaviors.dtsi>

@@ -1,0 +1,9 @@
+if SHIELD_LE_OEUF
+
+config ZMK_KEYBOARD_NAME
+    default "Onyx Cinder"
+
+config SPI
+    default y
+
+endif
