@@ -73,15 +73,37 @@
 #define POS_LHX 39   /* left  outer thumb (TH_O)        */
 #define POS_RHX 44   /* right outer thumb (TH_O)        */
 
+/* --- Outer pinky column: shared add-on, with Cornholius' three overrides ---
+ * Cornholius' outer column differs from the default (outer_col.h) only in three
+ * base positions, so we override those BEFORE including the add-on (guarded ->
+ * our value wins), and inherit the rest (top-L Esc, bottom Cadet-Shift both hands,
+ * higher layers transparent). */
+#define OUTER_base_home_L  &kp TAB      /* Cornholius: Tab (default was  - ) */
+#define OUTER_base_top_R   &kp BSPC     /* Cornholius: Backspace (default was ') */
+#define OUTER_base_home_R  &kp RET      /* Cornholius: Enter (default was  \ ) */
+#include "../shared/addons/outer_col.h"
+
+/* --- 4th-row outer modifier keys (Cornholius-specific) ---
+ * The lower row's outer triplets: left = Ctrl/Win/Alt, right (physical L->R) =
+ * AltGr/Win/Ctrl on base; transparent on the higher layers. */
+#define C_R3_TRANS   &trans &trans &trans
+#define C_R3_base_L  &kp LCTRL &kp LGUI &kp LALT
+#define C_R3_base_R  &kp RALT  &kp RGUI &kp RCTRL
+#define C_R3_nav_L   C_R3_TRANS
+#define C_R3_nav_R   C_R3_TRANS
+#define C_R3_num_L   C_R3_TRANS
+#define C_R3_num_R   C_R3_TRANS
+#define C_R3_fun_L   C_R3_TRANS
+#define C_R3_fun_R   C_R3_TRANS
+#define C_R3_pad_L   C_R3_TRANS
+#define C_R3_pad_R   C_R3_TRANS
+
 /* --- Layout adapter: weave the shared core into physical order ---
- * Rows 0-2 have an outer pinky column; row 3 is the full 4th row (6-thumb cluster
- * flanked by outer modifier keys). All non-core positions are not yet assigned, so
- * they weave the reserved filler RSVD_<layer> (&none on base, &trans elsewhere).
- * Row 3 left-to-right: 3 outer + outer thumb + 2 core thumbs (L) + 2 core thumbs (R)
- * + outer thumb + 3 outer. Replace RSVD_##L with add-on fragments / hand-written
- * bindings to activate the outer column and 4th row. */
+ * Rows 0-2: outer pinky column (OUTER_*) + 3x5 core. Row 3 left-to-right:
+ * 3 outer modifiers (C_R3_L) + outer thumb (RSVD/free) + 2 core thumbs (L) +
+ * 2 core thumbs (R) + outer thumb (RSVD/free) + 3 outer modifiers (C_R3_R). */
 #define KEYMAP_LAYER(L) \
-    RSVD_##L CORE_##L##_top_L   CORE_##L##_top_R   RSVD_##L \
-    RSVD_##L CORE_##L##_home_L  CORE_##L##_home_R  RSVD_##L \
-    RSVD_##L CORE_##L##_bot_L   CORE_##L##_bot_R   RSVD_##L \
-    RSVD_##L RSVD_##L RSVD_##L RSVD_##L CORE_##L##_thumb_L CORE_##L##_thumb_R RSVD_##L RSVD_##L RSVD_##L RSVD_##L
+    OUTER_##L##_top_L  CORE_##L##_top_L   CORE_##L##_top_R   OUTER_##L##_top_R \
+    OUTER_##L##_home_L CORE_##L##_home_L  CORE_##L##_home_R  OUTER_##L##_home_R \
+    OUTER_##L##_bot_L  CORE_##L##_bot_L   CORE_##L##_bot_R   OUTER_##L##_bot_R \
+    C_R3_##L##_L RSVD_##L CORE_##L##_thumb_L CORE_##L##_thumb_R RSVD_##L C_R3_##L##_R
