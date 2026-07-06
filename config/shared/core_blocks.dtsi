@@ -80,14 +80,22 @@
 /* =========================== weave helpers ================================ */
 
 /*
- * WEAVE_CORE(L) — the full 34-key core in canonical reading order (top, home,
- * bottom, thumbs; left hand then right hand per row). A pure 3x5+2 board's
- * geom_<board>.h just does `#define KEYMAP_LAYER(L) WEAVE_CORE(L)`.
+ * WEAVE_ALPHA_3x5(L) — just the 30-key alpha block (top, home, bottom; left hand
+ * then right hand per row), no thumbs. Boards weave their own thumb arrangement
+ * after this (2 thumbs, 3 thumbs, thumbs + a center key, ...).
  */
-#define WEAVE_CORE(L) \
+#define WEAVE_ALPHA_3x5(L) \
     CORE_##L##_top_L   CORE_##L##_top_R   \
     CORE_##L##_home_L  CORE_##L##_home_R  \
-    CORE_##L##_bot_L   CORE_##L##_bot_R   \
+    CORE_##L##_bot_L   CORE_##L##_bot_R
+
+/*
+ * WEAVE_CORE(L) — the full 34-key core in canonical reading order (the alpha block
+ * plus the inner 2 thumbs/hand). A pure 3x5+2 board's geom_<board>.h just does
+ * `#define KEYMAP_LAYER(L) WEAVE_CORE(L)`.
+ */
+#define WEAVE_CORE(L) \
+    WEAVE_ALPHA_3x5(L) \
     CORE_##L##_thumb_L CORE_##L##_thumb_R
 
 /*
