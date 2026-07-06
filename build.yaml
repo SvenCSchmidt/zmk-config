@@ -97,3 +97,27 @@ include:
   - board: sparkfun_pro_micro_rp2040//zmk
     cmake-args: -DEXTRA_CONF_FILE=../../config/shared_usb.conf
     shield: splaytoraid40
+
+  # --- Splaytoraid36 (BLE nice!nano; vendored shield in boards/shields/splaytoraid36).
+  # The Splaytoraid40 without the outer pinky column: 3x5 core + 3 thumbs/hand +
+  # center encoder. Wireless -> shared_ble.conf; EC11 from the shield's own conf. ---
+  - board: nice_nano//zmk
+    shield: splaytoraid36
+    cmake-args: -DEXTRA_CONF_FILE=../../config/shared_ble.conf
+
+  # --- sweep (Ferris Sweep; cradio_left/right shields built into ZMK core) ---
+  - board: nice_nano//zmk
+    shield: cradio_left
+    cmake-args: -DEXTRA_CONF_FILE=../../config/shared_ble.conf
+  - board: nice_nano//zmk
+    shield: cradio_right
+    cmake-args: -DEXTRA_CONF_FILE=../../config/shared_ble.conf
+
+  # --- MNHTTN (fooker split on xiao_ble; vendored shield in boards/shields/mnhttn).
+  # 3x5 core + 3 thumbs/hand. ---
+  - board: xiao_ble//zmk
+    shield: mnhttn_left
+    cmake-args: -DEXTRA_CONF_FILE=../../config/shared_ble.conf
+  - board: xiao_ble//zmk
+    shield: mnhttn_right
+    cmake-args: -DEXTRA_CONF_FILE=../../config/shared_ble.conf
