@@ -21,10 +21,12 @@ every board.
     physical matrix at compile time (reordering, padding dead positions with
     `&none`, dropping slots the board doesn't have).
 - **`config/<board>.keymap`** is thin: it selects the geometry header, includes
-  `config/shared/*`, and maps each layer with `bindings = <KEYMAP_LAYER(KM_base)>`.
-- **`config/shared.conf`** holds the common Kconfig settings for every board
-  (applied via `EXTRA_CONF_FILE` in `build.yaml`); a per-board `config/<board>.conf`
-  exists only for board-specific overrides (e.g. a display).
+  `config/shared/*`, and maps each layer with `bindings = <KEYMAP_LAYER(base)>`.
+- **Shared Kconfig** comes in two flavors, chosen per board by radio type via
+  `EXTRA_CONF_FILE` in `build.yaml`: **`config/shared_ble.conf`** for wireless/BLE
+  boards (nRF: nice!nano & clones, xiao_ble) and **`config/shared_usb.conf`** for
+  wired USB-only boards (RP2040/Helios — no Bluetooth). A per-board
+  `config/<board>.conf` exists only for board-specific extras (e.g. a display).
 
 The canonical content is the Colemak-DH TOTEM layout (`base`, `nav`, `num`, `fun`,
 `pad`). Host layout assumption: the OS keyboard layout is **German (DE)** (umlauts/€

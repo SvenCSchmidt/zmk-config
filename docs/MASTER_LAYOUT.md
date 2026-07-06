@@ -180,12 +180,19 @@ Current sourcing:
 
 ## 6. Config (`.conf`)
 
-Common settings live once in **`config/shared.conf`** (modelled on the TOTEM options)
-and are applied to every real board build via `-DEXTRA_CONF_FILE=../../config/shared.conf`
-in `build.yaml`. A per-board **`config/<board>.conf`** exists **only** when a board
-needs something specific (e.g. `cb34s.conf` carries the nice!view display widgets);
-it is merged on top of `shared.conf`. `settings_reset` builds deliberately omit the
-shared conf.
+Common settings live once in a **shared conf**, picked per board by radio type via
+`-DEXTRA_CONF_FILE` in `build.yaml`:
+
+- **`config/shared_ble.conf`** — wireless/BLE boards (nRF: nice!nano & clones, xiao_ble).
+  Enables Bluetooth, deep sleep, split battery reporting, debounce and combo limits.
+- **`config/shared_usb.conf`** — wired USB-only boards (RP2040 "pro micro" clones such
+  as Helios/SparkFun, e.g. Splaytoraid40). Same debounce/combo limits **without** any
+  Bluetooth (those boards have no radio, so `CONFIG_BT` would fail).
+
+A per-board **`config/<board>.conf`** exists **only** when a board needs something
+specific (e.g. `cb34s.conf` carries the nice!view display widgets); it is merged on
+top of the shared conf. Encoder EC11 config lives in the shield's own `<shield>.conf`.
+`settings_reset` builds deliberately omit the shared conf.
 
 ---
 

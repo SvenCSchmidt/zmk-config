@@ -1,6 +1,6 @@
 # GitHub Actions build matrix for the consolidated config.
 # One entry per board/shield half, plus a settings_reset build per hardware.
-# Every real board pulls the common settings via EXTRA_CONF_FILE=config/shared.conf
+# Every real board pulls the common settings via EXTRA_CONF_FILE=config/shared_ble.conf
 # (in addition to any board-specific config/<board>.conf). settings_reset builds
 # deliberately omit it — they only wipe stored settings.
 ---
@@ -8,10 +8,10 @@ include:
   # --- TOTEM (xiao_ble split) ---
   - board: xiao_ble//zmk
     shield: totem_left
-    cmake-args: -DEXTRA_CONF_FILE=../../config/shared.conf
+    cmake-args: -DEXTRA_CONF_FILE=../../config/shared_ble.conf
   - board: xiao_ble//zmk
     shield: totem_right
-    cmake-args: -DEXTRA_CONF_FILE=../../config/shared.conf
+    cmake-args: -DEXTRA_CONF_FILE=../../config/shared_ble.conf
   - board: xiao_ble//zmk
     shield: settings_reset
     artifact-name: totem_settings_reset
@@ -21,7 +21,7 @@ include:
   # old nice_nano_v2 board is now `nice_nano` (defaults to the 2.0.0 revision).
   - board: nice_nano//zmk
     shield: cb34s nice_view_adapter nice_view_gem
-    cmake-args: -DEXTRA_CONF_FILE=../../config/shared.conf
+    cmake-args: -DEXTRA_CONF_FILE=../../config/shared_ble.conf
   - board: nice_nano//zmk
     shield: settings_reset
     artifact-name: nrf_settings_reset
@@ -30,32 +30,32 @@ include:
   # With the animated nice!view custom screen (nice-view-gem).
   - board: nice_nano//zmk
     shield: urchin_left nice_view_adapter nice_view_gem
-    cmake-args: -DEXTRA_CONF_FILE=../../config/shared.conf
+    cmake-args: -DEXTRA_CONF_FILE=../../config/shared_ble.conf
   - board: nice_nano//zmk
     shield: urchin_right nice_view_adapter nice_view_gem
-    cmake-args: -DEXTRA_CONF_FILE=../../config/shared.conf
+    cmake-args: -DEXTRA_CONF_FILE=../../config/shared_ble.conf
 
   # --- re-gret (xiao_ble unibody; hardware from rschenk/zmk-keyboard-re-gret) ---
   - board: xiao_ble//zmk
     shield: re-gret
-    cmake-args: -DEXTRA_CONF_FILE=../../config/shared.conf
+    cmake-args: -DEXTRA_CONF_FILE=../../config/shared_ble.conf
 
   # --- forager (xiao_ble split; hardware from carrefinho/forager-zmk-module) ---
   # Built bare; the forager RGB LED status widget is a later opt-in.
   - board: xiao_ble//zmk
     shield: forager_left
-    cmake-args: -DEXTRA_CONF_FILE=../../config/shared.conf
+    cmake-args: -DEXTRA_CONF_FILE=../../config/shared_ble.conf
   - board: xiao_ble//zmk
     shield: forager_right
-    cmake-args: -DEXTRA_CONF_FILE=../../config/shared.conf
+    cmake-args: -DEXTRA_CONF_FILE=../../config/shared_ble.conf
 
   # --- delta-omega (xiao_ble split; hardware from unspecworks/zmk-keyboard-delta-omega) ---
   - board: xiao_ble//zmk
     shield: delta_omega_left
-    cmake-args: -DEXTRA_CONF_FILE=../../config/shared.conf
+    cmake-args: -DEXTRA_CONF_FILE=../../config/shared_ble.conf
   - board: xiao_ble//zmk
     shield: delta_omega_right
-    cmake-args: -DEXTRA_CONF_FILE=../../config/shared.conf
+    cmake-args: -DEXTRA_CONF_FILE=../../config/shared_ble.conf
 
   # --- Cornholius (ebastler wireless nRF52840 unibody, drop-in PCB for the Foostan
   # Cornelius). The upstream module (ebastler/zmk-module-cornholius) still ships the
@@ -65,7 +65,7 @@ include:
   # with a full 4th row (48 keys); outer column + 4th-row outers + outer thumbs map to
   # reserved master slots (currently inactive), so it runs the canonical 34-key core. ---
   - board: cornholius//zmk
-    cmake-args: -DEXTRA_CONF_FILE=../../config/shared.conf
+    cmake-args: -DEXTRA_CONF_FILE=../../config/shared_ble.conf
   - board: cornholius//zmk
     shield: settings_reset
     artifact-name: cornholius_settings_reset
@@ -75,24 +75,25 @@ include:
   # (currently inactive). No module/vendoring needed.
   - board: nice_nano//zmk
     shield: corne_left
-    cmake-args: -DEXTRA_CONF_FILE=../../config/shared.conf
+    cmake-args: -DEXTRA_CONF_FILE=../../config/shared_ble.conf
   - board: nice_nano//zmk
     shield: corne_right
-    cmake-args: -DEXTRA_CONF_FILE=../../config/shared.conf
+    cmake-args: -DEXTRA_CONF_FILE=../../config/shared_ble.conf
 
   # --- KLOTZ (GEIGEIGEIST split, nice!nano; vendored shield in boards/shields/klotz).
   # Pure 3x5+2 core plus one rotary encoder per half (EC11, enabled by the shield's
   # klotz.conf). Built bare — no backlight/underglow. ---
   - board: nice_nano//zmk
     shield: klotz_left
-    cmake-args: -DEXTRA_CONF_FILE=../../config/shared.conf
+    cmake-args: -DEXTRA_CONF_FILE=../../config/shared_ble.conf
   - board: nice_nano//zmk
     shield: klotz_right
-    cmake-args: -DEXTRA_CONF_FILE=../../config/shared.conf
+    cmake-args: -DEXTRA_CONF_FILE=../../config/shared_ble.conf
 
   # --- Splaytoraid40 (wired RP2040 unibody; vendored shield in boards/shields/
-  # splaytoraid40). USB only (no BLE), so it does NOT use the BLE-centric shared.conf
-  # — its hardware-agnostic settings live in config/splaytoraid40.conf, auto-applied
-  # by ZMK for this shield. Outer column (top+home) + center encoder. ---
+  # splaytoraid40). USB only (no BLE) -> uses config/shared_usb.conf instead of the
+  # BLE shared_ble.conf. The encoder's EC11 comes from the shield's own
+  # splaytoraid40.conf. Outer column (top+home) + center encoder. ---
   - board: sparkfun_pro_micro_rp2040//zmk
+    cmake-args: -DEXTRA_CONF_FILE=../../config/shared_usb.conf
     shield: splaytoraid40
