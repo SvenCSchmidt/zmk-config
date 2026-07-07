@@ -119,6 +119,16 @@ include:
     shield: elchibre
     cmake-args: -DEXTRA_CONF_FILE=../../config/shared_ble.conf
 
+  # --- Tipper TF (weteor) — vendored HWv2 nRF52840 board in boards/shields/tipper_tf/
+  # (migrated from weteor's HWv1 board + zmk fork). 3x5 + 2 thumbs/hand (geom_3x5_2.h).
+  # The 1.54" GoodDisplay epaper is driven by the JD79653 driver vendored in
+  # drivers/display/ and enabled in config/tipper_tf.conf. ---
+  - board: tipper_tf//zmk
+    cmake-args: -DEXTRA_CONF_FILE=../../config/shared_ble.conf
+  - board: tipper_tf//zmk
+    shield: settings_reset
+    artifact-name: tipper_tf_settings_reset
+
   # --- MNHTTN (fooker split on xiao_ble; vendored shield in boards/shields/mnhttn).
   # 3x5 core + 3 thumbs/hand. ---
   - board: xiao_ble//zmk

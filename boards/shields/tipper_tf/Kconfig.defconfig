@@ -1,0 +1,22 @@
+# Copyright (c) 2021 @weteor
+# SPDX-License-Identifier: MIT
+
+if BOARD_TIPPER_TF
+
+config ZMK_KEYBOARD_NAME
+	default "Tipper TF"
+
+if USB_DEVICE_STACK
+
+config USB_NRFX
+	default y
+
+endif # USB_DEVICE_STACK
+
+config BT_CTLR
+	default BT
+
+config ZMK_BATTERY_VOLTAGE_DIVIDER
+	default y
+
+endif # BOARD_TIPPER_TF

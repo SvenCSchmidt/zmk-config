@@ -1,0 +1,8 @@
+board:
+  name: tipper_tf
+  full_name: Tipper TF
+  vendor: weteor
+  socs:
+    - name: nrf52840
+      variants:
+        - name: zmk

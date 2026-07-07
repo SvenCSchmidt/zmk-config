@@ -1,3 +1,10 @@
+name: zmk-config-consolidated
 build:
+  # cmake/kconfig register this repo's out-of-tree drivers (drivers/**); they are
+  # only compiled when their CONFIG_* is set, so boards that don't opt in are
+  # unaffected. dts_root exposes dts/bindings/** (e.g. the jd79653 EPD binding).
+  cmake: .
+  kconfig: Kconfig
   settings:
     board_root: .
+    dts_root: .

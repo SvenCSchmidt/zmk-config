@@ -1,0 +1,12 @@
+# JD79653 EPD controller (GoodDisplay GDEW0154M09)
+
+# Copyright (c) 2020 Phytec Messtechnik GmbH
+# SPDX-License-Identifier: Apache-2.0
+
+config JD79653
+	bool "JD79653 compatible display controller driver"
+	depends on SPI
+	help
+	  Enable driver for the JD79653 (GoodDisplay GDEW0154M09) EPD controller.
+	  Ported from weteor's ZMK fork to the current Zephyr display/SPI/GPIO API
+	  (mirrors ZMK's in-tree il0323 driver).
