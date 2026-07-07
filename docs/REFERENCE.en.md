@@ -94,8 +94,12 @@ zmk-config/
 ├── boards/
 │   └── shields/<name>/              # all vendored hardware: split/shield definitions
 │                                    # AND full HWv2 controller boards (nRF/STM32)
+├── drivers/                         # vendored out-of-tree drivers (e.g. display/jd79653.c,
+│                                    # the Tipper TF epaper); compiled only when opted in
+├── dts/bindings/                    # devicetree bindings for the vendored drivers
+├── CMakeLists.txt / Kconfig         # module entry points for drivers/ (see zephyr/module.yml)
 ├── build.yaml                       # CI build matrix (one entry per board half)
-├── zephyr/module.yml                # board_root: . (exposes boards/ for vendoring)
+├── zephyr/module.yml                # board_root + dts_root + cmake/kconfig for this module
 ├── README.md
 ├── ADDING_A_BOARD.md                # quick checklist
 └── docs/
@@ -747,9 +751,21 @@ comes from one of:
 - **Vendored** under `boards/shields/<name>/` — a local copy, when no distributable
   module exists or a module can't build against our revision. This one directory holds
   both plain shields and full HWv2 controller boards migrated to Zephyr 4.1 (Cornholius,
-  Le Chiffre BLE, Le Chiffre 36 STM32) — Zephyr discovers a board by its `board.yml`
-  regardless of the path, so boards and shields can share the folder. `zephyr/module.yml`
-  sets `board_root: .` so `boards/` is on the search path.
+  Le Chiffre BLE, Le Chiffre 36 STM32, Tipper TF) — Zephyr discovers a board by its
+  `board.yml` regardless of the path, so boards and shields can share the folder.
+  `zephyr/module.yml` sets `board_root: .` so `boards/` is on the search path.
+
+### Vendored out-of-tree drivers
+
+When a board needs a driver that isn't in `zmk main`, it is vendored under `drivers/`
+with its binding under `dts/bindings/`, and this repo's `zephyr/module.yml` registers
+them (`build.cmake` → root `CMakeLists.txt`, `build.kconfig` → root `Kconfig`,
+`dts_root: .`). A driver is compiled **only** when its `CONFIG_*` is set, so the module
+is inert for every board that doesn't opt in. Current example: **`drivers/display/
+jd79653.c`** — the Tipper TF's 1.54″ GoodDisplay (JD79653) epaper controller, ported
+from weteor's ZMK fork (old Zephyr 2.x API) to the current Zephyr display/SPI/GPIO API
+by mirroring ZMK's in-tree `il0323` driver. The Tipper board's `config/tipper_tf.conf`
+turns it on with `CONFIG_JD79653=y` + `CONFIG_ZMK_DISPLAY=y`.
 
 Deleting your old per-board `zmk-config-*` repos is safe: the shield/board definitions
 are vendored (or pulled as modules) and all content lives in `config/shared/`.

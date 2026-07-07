@@ -1,5 +1,5 @@
 /*
- * macros.dtsi — shared macros, taken 1:1 from the canonical TOTEM keymap.
+ * macros.dtsi — shared macros, taken 1:1 from the original TOTEM keymap.
  *   MCR_DQT    — German double-quote then space
  *   MCR_SCH    — "sch" (releases shift so only S is capitalised)
  *   MCR_SQT    — single-quote then space

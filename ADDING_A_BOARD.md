@@ -41,7 +41,7 @@ documented, see [`docs/REFERENCE.en.md`](docs/REFERENCE.en.md) (English) /
        start from `WEAVE_ALPHA_3x5(L)` (30 alpha keys) or `WEAVE_CORE(L)` (34 = alpha +
        inner 2 thumbs), then add the board's extras. Use `RSVD_##L` for a physical key
        whose content isn't decided yet (`&none` base / `&trans` higher).
-     - Templates: `geom_totem.h` (extra pinkies/thumbs woven as `RSVD`),
+     - Templates: `geom_totem.h` (extra pinky + 3rd thumb via the shared add-ons),
        `geom_cornholius.h` (outer column + hand-written 4th row), `geom_chiffre.h`
        (center key spliced into the bottom row).
 

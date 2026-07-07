@@ -6,7 +6,8 @@
  *
  * The outer pinky column is populated from the shared add-on config/shared/addons/
  * outer_col.h (Esc / - / Cadet-( on the left, ' / \ / Cadet-) on the right; higher
- * layers transparent). The 3rd (outer) thumb stays reserved (RSVD) for now.
+ * layers transparent). The 3rd (outer) thumb uses the shared thumb_outer.h add-on
+ * (unused by default), so it stays reserved for now.
  *
  * Physical position scheme (corne default_transform, 12 cols x 4 rows):
  *    0  1  2  3  4  5 |  6  7  8  9 10 11      row 0   (0 & 11 = outer pinkies)

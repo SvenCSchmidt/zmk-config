@@ -11,7 +11,7 @@
  *   CORE_<layer>_bot_L    CORE_<layer>_bot_R      row 2 (bottom alpha)
  *   CORE_<layer>_thumb_L  CORE_<layer>_thumb_R    inner 2 thumbs per hand
  *
- * layer ∈ { base, nav, num, fun, pad }. Content is the canonical TOTEM Colemak-DH.
+ * layer ∈ { base, nav, num, fun, pad }. Content is the shared Colemak-DH layout (initially transcribed from the TOTEM, which is otherwise just another consumer board).
  *
  * A board's config/geometry/geom_<board>.h defines KEYMAP_LAYER(L) by weaving these
  * fragments into that board's physical matrix order — inserting any board-specific

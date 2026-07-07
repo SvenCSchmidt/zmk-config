@@ -96,8 +96,12 @@ zmk-config/
 ├── boards/
 │   └── shields/<name>/              # alle vendorte Hardware: Split-/Shield-Definitionen
 │                                    # UND vollständige HWv2-Controller-Boards (nRF/STM32)
+├── drivers/                         # vendorte Out-of-Tree-Treiber (z. B. display/jd79653.c,
+│                                    # das Tipper-TF-Epaper); nur bei Opt-in kompiliert
+├── dts/bindings/                    # Devicetree-Bindings für die vendorten Treiber
+├── CMakeLists.txt / Kconfig         # Modul-Einstiegspunkte für drivers/ (s. zephyr/module.yml)
 ├── build.yaml                       # CI-Build-Matrix (ein Eintrag pro Board-Hälfte)
-├── zephyr/module.yml                # board_root: . (macht boards/ fürs Vendoring sichtbar)
+├── zephyr/module.yml                # board_root + dts_root + cmake/kconfig für dieses Modul
 ├── README.md
 ├── ADDING_A_BOARD.md                # Kurz-Checkliste (Englisch)
 └── docs/
@@ -764,10 +768,23 @@ Controller-Board) stammt aus einer von zwei Quellen:
 - **Vendort** unter `boards/shields/<name>/` — eine lokale Kopie, wenn kein verteilbares
   Modul existiert oder ein Modul nicht gegen unsere Revision baut. Dieses eine
   Verzeichnis enthält sowohl reine Shields als auch vollständige HWv2-Controller-Boards
-  (auf Zephyr 4.1 migriert: Cornholius, Le Chiffre BLE, Le Chiffre 36 STM32) — Zephyr
-  erkennt ein Board an seiner `board.yml`, unabhängig vom Pfad, daher können sich Boards
-  und Shields den Ordner teilen. `zephyr/module.yml` setzt `board_root: .`, damit
-  `boards/` im Suchpfad liegt.
+  (auf Zephyr 4.1 migriert: Cornholius, Le Chiffre BLE, Le Chiffre 36 STM32, Tipper TF)
+  — Zephyr erkennt ein Board an seiner `board.yml`, unabhängig vom Pfad, daher können
+  sich Boards und Shields den Ordner teilen. `zephyr/module.yml` setzt `board_root: .`,
+  damit `boards/` im Suchpfad liegt.
+
+### Vendorte Out-of-Tree-Treiber
+
+Braucht ein Board einen Treiber, der nicht in `zmk main` ist, wird er unter `drivers/`
+mit seinem Binding unter `dts/bindings/` vendort, und die `zephyr/module.yml` dieses
+Repos registriert beides (`build.cmake` → Wurzel-`CMakeLists.txt`, `build.kconfig` →
+Wurzel-`Kconfig`, `dts_root: .`). Ein Treiber wird **nur** kompiliert, wenn sein
+`CONFIG_*` gesetzt ist, das Modul ist also für jedes Board ohne Opt-in inaktiv.
+Aktuelles Beispiel: **`drivers/display/jd79653.c`** — der 1,54″-GoodDisplay-(JD79653-)
+Epaper-Controller des Tipper TF, aus weteors ZMK-Fork (alte Zephyr-2.x-API) auf die
+aktuelle Zephyr-Display/SPI/GPIO-API portiert (nach dem Vorbild von ZMKs internem
+`il0323`-Treiber). Die `config/tipper_tf.conf` des Boards schaltet ihn mit
+`CONFIG_JD79653=y` + `CONFIG_ZMK_DISPLAY=y` ein.
 
 Deine alten Board-Repos `zmk-config-*` zu löschen ist sicher: die Shield-/Board-
 Definitionen sind vendort (oder werden als Module geladen), und aller Inhalt liegt in

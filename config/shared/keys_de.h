@@ -1,7 +1,7 @@
 /*
  * keys_de.h — German-layout helper aliases, shared by every board.
  *
- * The canonical TOTEM content produces German special characters via AltGr
+ * The original TOTEM content produces German special characters via AltGr
  * (RA = RIGHT_ALT) on a host configured for the German (DE) keyboard layout,
  * e.g. RA(Q)=ä, RA(P)=ö, RA(Y)=ü, RA(S)=ß, RA(N5)=€. The umlaut combos in
  * combos.dtsi use those sequences inline.

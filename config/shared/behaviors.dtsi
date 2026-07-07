@@ -1,7 +1,7 @@
 /*
  * behaviors.dtsi — HomeRowMods (hold-tap) behaviors, shared by every board.
  *
- * Parameters are taken 1:1 from the canonical TOTEM keymap. Positional hold-taps
+ * Parameters are taken 1:1 from the original TOTEM keymap. Positional hold-taps
  * (hmlc/hmrc/hmls/hmrs) use symbolic key positions resolved by the board's
  * geometry header, so no raw position number appears here.
  *

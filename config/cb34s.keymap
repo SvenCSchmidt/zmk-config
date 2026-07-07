@@ -3,7 +3,7 @@
  *
  * All content lives in config/shared/. This file only selects the board geometry
  * adapter and lays the shared master layers onto it. cb34s is a pure 3x5+2 core,
- * so it now uses the canonical TOTEM content unchanged (the consolidation goal).
+ * so it now uses the original TOTEM content unchanged (the consolidation goal).
  * To change a key, combo, macro or HRM, edit config/shared/*, never this file.
  */
 

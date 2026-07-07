@@ -101,8 +101,8 @@
 
 /* --- Layout adapter: weave the shared core into physical order ---
  * Rows 0-2: outer pinky column (OUTER_*) + 3x5 core. Row 3 left-to-right:
- * 3 outer modifiers (C_R3_L) + outer thumb (RSVD/free) + 2 core thumbs (L) +
- * 2 core thumbs (R) + outer thumb (RSVD/free) + 3 outer modifiers (C_R3_R). */
+ * 3 outer modifiers (C_R3_L) + 3rd thumb (THUMB_O, unused) + 2 core thumbs (L) +
+ * 2 core thumbs (R) + 3rd thumb (THUMB_O, unused) + 3 outer modifiers (C_R3_R). */
 #define KEYMAP_LAYER(L) \
     OUTER_##L##_top_L  CORE_##L##_top_L   CORE_##L##_top_R   OUTER_##L##_top_R \
     OUTER_##L##_home_L CORE_##L##_home_L  CORE_##L##_home_R  OUTER_##L##_home_R \
