@@ -1,5 +1,7 @@
 # The master layout — how this repo works
 
+> 🇩🇪 **Dieses Dokument gibt es auch auf Deutsch: [`MASTER_LAYOUT.de.md`](MASTER_LAYOUT.de.md).**
+
 > This is the conceptual overview. For the **complete reference** — every shared
 > variable documented and a full step-by-step board example — see
 > [`REFERENCE.en.md`](REFERENCE.en.md) (English) / [`REFERENCE.de.md`](REFERENCE.de.md)

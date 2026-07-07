@@ -1,5 +1,7 @@
 # Adding a board
 
+> 🇩🇪 **Diese Anleitung gibt es auch auf Deutsch: [`ADDING_A_BOARD.de.md`](ADDING_A_BOARD.de.md).**
+
 This repo keeps **all** layer content, combos, macros, HomeRowMods and settings in
 `config/shared/`. A board never gets its own content — it only gets a *geometry
 adapter* that weaves the shared core (and any reusable add-ons) onto its physical
@@ -15,12 +17,14 @@ documented, see [`docs/REFERENCE.en.md`](docs/REFERENCE.en.md) (English) /
 
 1. **Provide the hardware definition.**
    - Prefer an upstream module referenced from `config/west.yml`.
-   - Otherwise vendor the board/shield definition under `boards/` (this repo uses
-     `board_root: .`, see `zephyr/module.yml`). For a shield that means
-     `boards/shields/<name>/` with its `*.overlay`/`*.dtsi`, `Kconfig.shield`,
-     `Kconfig.defconfig`, and (for splits) `<name>.zmk.yml`. Vendor **only** the
-     hardware files — never the source repo's own `keymap`/`keys_*`/`.conf` radio
-     settings (those come from `config/shared/` and the shared confs).
+   - Otherwise vendor the definition under `boards/shields/<name>/` (this repo uses
+     `board_root: .`, see `zephyr/module.yml`; that one folder holds both plain shields
+     and full HWv2 controller boards). For a shield that means its `*.overlay`/`*.dtsi`,
+     `Kconfig.shield`, `Kconfig.defconfig`, and (for splits) `<name>.zmk.yml`; for a full
+     board its `board.yml`, `Kconfig.<board>`, `<board>_<soc>_zmk.dts`, defconfig,
+     `board.cmake`, etc. Vendor **only** the hardware files — never the source repo's own
+     `keymap`/`keys_*`/`.conf` radio settings (those come from `config/shared/` and the
+     shared confs).
 
 2. **Pick or write the geometry adapter.** Read the board's `matrix_transform` order,
    then:
@@ -58,7 +62,7 @@ documented, see [`docs/REFERENCE.en.md`](docs/REFERENCE.en.md) (English) /
    `settings_reset` build for its hardware. Encoder `EC11` config lives in the shield's
    own `<shield>.conf`.
 
-6. **Verify** before pushing: run `scratchpad/verify.py` (TOTEM must stay
+6. **Verify** before pushing: run `scratchpad/verify.py` (TOTEM's core must stay
    byte-identical — proves you didn't disturb shared content) and a binding-count check
    for the new board (it must preprocess to exactly the number of keys its matrix has;
    copy `scratchpad/verify_endgame.py` and change the expected count).

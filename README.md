@@ -34,9 +34,10 @@ The canonical content is a Colemak-DH layout with five layers (`base`, `nav`, `n
 `fun`, `pad`). Host layout assumption: the OS keyboard layout is **German (DE)**
 (umlauts/€ are produced via AltGr; see `config/shared/keys_de.h`).
 
-**➜ Overview in [`docs/MASTER_LAYOUT.md`](docs/MASTER_LAYOUT.md)** — the shared
-core, add-ons and overrides, per-board adapters, editing, board sourcing (module vs.
-vendored), config, and verification.
+**➜ Overview** — the shared core, add-ons and overrides, per-board adapters, editing,
+board sourcing (module vs. vendored), config, and verification:
+[`docs/MASTER_LAYOUT.md`](docs/MASTER_LAYOUT.md) 🇬🇧 ·
+[`docs/MASTER_LAYOUT.de.md`](docs/MASTER_LAYOUT.de.md) 🇩🇪
 
 **➜ Complete reference** (every variable documented + a full step-by-step board
 example): [`docs/REFERENCE.en.md`](docs/REFERENCE.en.md) 🇬🇧 ·
@@ -65,7 +66,9 @@ example): [`docs/REFERENCE.en.md`](docs/REFERENCE.en.md) 🇬🇧 ·
 | BLEndgame | `nice_nano//zmk` + `endgame` (vendored shield in `boards/shields/endgame/`) | BLE unibody, 36 keys: 3x5 + 3 thumbs/side (outer thumb reserved) |
 | Endgame | `sparkfun_pro_micro_rp2040//zmk` + `endgame` (vendored shield in `boards/shields/endgame/`) | wired RP2040 (Gemini/RP2040-Zero class) build of the same board; USB only |
 
-Adding a board changes no shared content — see [`ADDING_A_BOARD.md`](ADDING_A_BOARD.md).
+Adding a board changes no shared content — see
+[`ADDING_A_BOARD.md`](ADDING_A_BOARD.md) 🇬🇧 ·
+[`ADDING_A_BOARD.de.md`](ADDING_A_BOARD.de.md) 🇩🇪.
 
 ## Building
 
