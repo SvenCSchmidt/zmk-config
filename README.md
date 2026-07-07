@@ -21,19 +21,18 @@ every board.
   - a `KEYMAP_LAYER(L)` macro that weaves the core fragments (and whichever add-ons the
     board physically has, plus any hand-written edges) into the board's matrix order.
   Common shapes just `#include` a shared adapter — **`geom_3x5_2.h`** (3×5+2) or
-  **`geom_3x5_3.h`** (3×5+3); odd matrices (TOTEM, Corne/Cornholius, Le Chiffre,
-  Splaytoraid) write a small bespoke weave.
+  **`geom_3x5_3.h`** (3×5+3); boards with other matrices write a small bespoke weave.
 - **`config/<board>.keymap`** is thin: it selects the geometry header, includes
   `config/shared/*`, and maps each layer with `bindings = <KEYMAP_LAYER(base)>`.
 - **Shared Kconfig** comes in two flavors, chosen per board by radio type via
   `EXTRA_CONF_FILE` in `build.yaml`: **`config/shared_ble.conf`** for wireless/BLE
   boards (nRF: nice!nano & clones, xiao_ble) and **`config/shared_usb.conf`** for
-  wired USB-only boards (RP2040/Helios — no Bluetooth). A per-board
-  `config/<board>.conf` exists only for board-specific extras (e.g. a display).
+  wired USB-only boards (no Bluetooth). A per-board `config/<board>.conf` exists only
+  for board-specific extras.
 
-The canonical content is the Colemak-DH TOTEM layout (`base`, `nav`, `num`, `fun`,
-`pad`). Host layout assumption: the OS keyboard layout is **German (DE)** (umlauts/€
-are produced via AltGr; see `config/shared/keys_de.h`).
+The canonical content is a Colemak-DH layout with five layers (`base`, `nav`, `num`,
+`fun`, `pad`). Host layout assumption: the OS keyboard layout is **German (DE)**
+(umlauts/€ are produced via AltGr; see `config/shared/keys_de.h`).
 
 **➜ Overview in [`docs/MASTER_LAYOUT.md`](docs/MASTER_LAYOUT.md)** — the shared
 core, add-ons and overrides, per-board adapters, editing, board sourcing (module vs.
@@ -47,7 +46,7 @@ example): [`docs/REFERENCE.en.md`](docs/REFERENCE.en.md) 🇬🇧 ·
 
 | Board  | Hardware                       | Geometry            |
 |--------|--------------------------------|---------------------|
-| TOTEM  | `xiao_ble//zmk` + `totem_left/right` | 3x5 + 2 thumbs/side |
+| TOTEM  | `xiao_ble//zmk` + `totem_left/right` | 3x5 + 3 thumbs/side + 1 extra pinky/side (extra pinky = shared outer-column key; 3rd thumb reserved) |
 | cb34s  | `nice_nano//zmk` + `cb34s`           | 3x5 + 2 thumbs/side |
 | Urchin | `nice_nano//zmk` + `urchin_left/right` (module `duckyb/urchin-zmk-module`) | 3x5 + 2 thumbs/side |
 | re-gret | `xiao_ble//zmk` + `re-gret` (module `rschenk/zmk-keyboard-re-gret`) | 3x5 + 2 thumbs (unibody) |
@@ -77,10 +76,5 @@ GitHub Actions builds every entry in [`build.yaml`](build.yaml) (each board plus
 
 Animated nice!view screens are opt-in per board via the
 [`nice-view-gem`](https://github.com/M165437/nice-view-gem) module (referenced in
-`config/west.yml`, its `main` branch tracks our `zmk main`). A board enables it by
-adding `nice_view_adapter nice_view_gem` to its `build.yaml` shield list and the
-display settings to its `config/<board>.conf` (toggle the animation with
-`CONFIG_NICE_VIEW_GEM_ANIMATION`). **cb34s** and **Urchin** use it today; TOTEM has
-no display. (cb34s's original animation came from the `AakashDabas/zmk@animated_widgets`
-fork, which is incompatible with `zmk main`; `nice-view-gem` is the main-compatible
-replacement and unifies both boards on one display module.)
+`config/west.yml`). A board enables it by adding `nice_view_adapter nice_view_gem` to
+its `build.yaml` shield list and the display settings to its `config/<board>.conf`.

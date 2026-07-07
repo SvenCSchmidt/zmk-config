@@ -182,14 +182,9 @@ Tasten in seinem `matrix_transform` nummeriert).
 |---|---|---|
 | `POS_LOT / POS_ROT` | äußere Pinky-Spalte, obere Reihe (L/R) | Corne, Cornholius, Splaytoraid40 |
 | `POS_LOH / POS_ROH` | äußere Pinky-Spalte, Home-Reihe (L/R) | Corne, Cornholius, Splaytoraid40 |
-| `POS_LOB / POS_ROB` | äußere Pinky-Spalte, untere Reihe (L/R) | Corne, Cornholius |
-| `POS_LHX / POS_RHX` | 3. (äußerer) Daumen (L/R) | jedes Board mit 3. Daumen |
-| `POS_LBX / POS_RBX` | äußere Pinky-Taste der unteren Reihe beim TOTEM (dessen Benennung) | TOTEM |
+| `POS_LOB / POS_ROB` | äußere Pinky-Spalte, untere Reihe (L/R) | Corne, Cornholius, TOTEM |
+| `POS_LHX / POS_RHX` | 3. (äußerer) Daumen (L/R) | jedes Board mit 3. Daumen (inkl. TOTEM) |
 | `POS_CENTER` | eine einzelne Mitteltaste (Encoder-Druck) | Le Chiffre, Splaytoraid |
-
-> Namenshinweis: Das TOTEM stammt aus der Zeit vor der `LOB/ROB`-Konvention und nennt
-> seine unteren äußeren Pinky-Tasten `POS_LBX/POS_RBX`; beide meinen dieselbe Art Taste.
-> Neue Boards sollten `LOB/ROB` verwenden.
 
 **Geteilter Helfer `core_3x5.h`** — jedes Board, dessen Alphablock lückenlos `0..29`
 (zeilenweise) nummeriert ist, `#include`t dies, um alle 30 Alpha-`POS_*` in einer Zeile
@@ -739,9 +734,12 @@ Korrektheit wird durch Präprozessieren bewiesen, nicht nur durch „es baut“:
 
 - **`scratchpad/verify.py`** lässt den C-Präprozessor über die *originale*
   `zmk-config-totem`-Keymap und unsere `totem.keymap` laufen und vergleicht die
-  expandierten `bindings` jedes Layers sowie jedes Combo. TOTEM muss **byte-identisch**
-  bleiben — das Regressions-Gate, das beweist, dass eine Änderung am geteilten Inhalt das
-  kanonische Layout nicht verändert hat (5/5 Layer, alle 37 Combos identisch).
+  expandierten `bindings` jedes Layers sowie jedes Combo. TOTEMs **34-Tasten-Core muss
+  byte-identisch** bleiben — das Regressions-Gate, das beweist, dass eine Änderung am
+  geteilten Inhalt das kanonische Layout nicht verändert hat (5/5 Layer, alle 37 Combos
+  identisch). TOTEMs vier äußere Tasten (die unteren Extra-Pinkys + die 3. Daumen) werden
+  jetzt bewusst von den geteilten AddOns gesteuert und sind daher vom Byte-Vergleich
+  ausgenommen.
 - **Board-Binding-Anzahl** (`verify_cb34s.py`, `verify_endgame.py`, …): die Keymap eines
   Boards muss zu exakt seiner physischen Tastenzahl präprozessieren (34 für `3×5+2`, 36
   für `3×5+3`, 42 für das Kolibri-Beispiel). Das fängt ein falsch gewebtes

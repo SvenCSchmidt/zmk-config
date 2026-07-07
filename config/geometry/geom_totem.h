@@ -1,24 +1,29 @@
 /*
  * Geometry adapter for the TOTEM (GEIGEIGEIST) split — shield totem_left/right
- * on xiao_ble. TOTEM is just another 3x5+2 board here: 38 physical positions, i.e.
- * the shared core plus an outer pinky per hand on the bottom row (20, 31) and an
- * outer thumb per hand (32, 37); those extras are currently reserved (RSVD).
+ * on xiao_ble. TOTEM is a 3x5 core PLUS, per hand, a single extra pinky on the
+ * bottom row and a 3rd (outer) thumb — 38 physical positions total.
+ *
+ * Those extras are built from the SHARED add-ons, exactly like the other boards
+ * that have them: the bottom extra pinky is the outer column's bottom key
+ * (addons/outer_col.h -> Cadet-Shift ( / ) by default), and the 3rd thumb is the
+ * shared 3rd thumb (addons/thumb_outer.h -> unused by default). To change either
+ * for TOTEM only, #define the fragment before the includes below; to change it for
+ * every board that has it, edit the add-on.
  *
  * (Historical note: the shared keymap content was originally transcribed FROM the
  * TOTEM keymap, but that content now lives neutrally in shared/core_blocks.dtsi —
- * TOTEM is not a "master" or standard, it is a consumer like every other board.)
+ * TOTEM is a consumer like every other board.)
  *
  * Two artifacts, both derived from this board's matrix-transform order:
- *   1. KEYMAP_LAYER(L) — weaves the shared core (core_blocks.dtsi) into TOTEM's
- *      physical order, using RSVD_<layer> at the reserved outer positions.
+ *   1. KEYMAP_LAYER(L) — weaves the shared core + add-ons into TOTEM's physical order.
  *   2. POS_*    — symbolic names for the physical key positions, used by
  *      shared/combos.dtsi and shared/behaviors.dtsi. No raw number lives in shared/.
  *
  * Physical position scheme (matches the board's matrix_transform):
  *    0  1  2  3  4   |   5  6  7  8  9        row 0
  *   10 11 12 13 14   |  15 16 17 18 19        row 1 (home)
- *   20 21 22 23 24 25|  26 27 28 29 30 31     row 2 (20 & 31 = &none)
- *           32 33 34 |  35 36 37              thumbs (32 & 37 = &none)
+ *   20 21 22 23 24 25|  26 27 28 29 30 31     row 2 (20 & 31 = extra pinkies)
+ *           32 33 34 |  35 36 37              thumbs (32 & 37 = 3rd/outer thumbs)
  */
 
 #pragma once
@@ -46,9 +51,9 @@
 #define POS_RM2 17
 #define POS_RM1 18
 #define POS_RM0 19
-/* row 2 (bottom). TOTEM physically HAS the outer-pinky keys at 20 & 31 (the
- * master OUT column, bottom row); they get symbols so master edits reach them. */
-#define POS_LBX 20   /* left  bottom outer pinky (master OUT column) */
+/* row 2 (bottom). 20 & 31 are the bottom-row extra pinkies (the outer column's
+ * bottom key); they get symbols so combos/HRM could target them. */
+#define POS_LOB 20   /* left  bottom extra pinky (outer column, bottom) */
 #define POS_LB0 21
 #define POS_LB1 22
 #define POS_LB2 23
@@ -59,24 +64,27 @@
 #define POS_RB2 28
 #define POS_RB1 29
 #define POS_RB0 30
-#define POS_RBX 31   /* right bottom outer pinky (master OUT column) */
-/* thumbs. TOTEM physically HAS the outer thumb keys at 32 & 37 (the master TH_O
- * slots); they get symbols so master edits reach them. */
-#define POS_LHX 32   /* left  outer thumb (master TH_O) */
+#define POS_ROB 31   /* right bottom extra pinky (outer column, bottom) */
+/* thumbs. 32 & 37 are the 3rd (outer) thumbs. */
+#define POS_LHX 32   /* left  3rd (outer) thumb */
 #define POS_LH0 33
 #define POS_LH1 34
 #define POS_RH1 35
 #define POS_RH0 36
-#define POS_RHX 37   /* right outer thumb (master TH_O) */
+#define POS_RHX 37   /* right 3rd (outer) thumb */
 
-/* --- Layout adapter: weave the shared core into physical order ---
- * TOP and HOME are pure 3x5 (no outer column). The BOTTOM row and the THUMB row
- * physically have outer keys (the outer pinkies at 20/31 and the outer thumbs at
- * 32/37); their content is board-specific and not yet assigned, so they weave the
- * reserved filler RSVD_<layer> (&none on base, &trans elsewhere). Replace those
- * with hand-written bindings to activate TOTEM's outer pinkies/thumbs. */
+/* Shared add-ons: the bottom extra pinky (outer_col.h, bottom row only) and the
+ * 3rd thumb (thumb_outer.h). Both are #ifndef-guarded, so a TOTEM-only override
+ * would go ABOVE these includes. */
+#include "../shared/addons/outer_col.h"
+#include "../shared/addons/thumb_outer.h"
+
+/* --- Layout adapter: weave the shared core + add-ons into physical order ---
+ * TOP and HOME are pure 3x5 (TOTEM has no top/home outer pinky). The BOTTOM row
+ * carries the extra pinky (OUTER_<layer>_bot_*) around the 3x5 core, and the THUMB
+ * row carries the 3rd thumb (THUMB_O_<layer>_*) around the inner 2 core thumbs. */
 #define KEYMAP_LAYER(L) \
     CORE_##L##_top_L   CORE_##L##_top_R   \
     CORE_##L##_home_L  CORE_##L##_home_R  \
-    RSVD_##L CORE_##L##_bot_L   CORE_##L##_bot_R   RSVD_##L \
-    RSVD_##L CORE_##L##_thumb_L CORE_##L##_thumb_R RSVD_##L
+    OUTER_##L##_bot_L  CORE_##L##_bot_L   CORE_##L##_bot_R   OUTER_##L##_bot_R \
+    THUMB_O_##L##_L    CORE_##L##_thumb_L CORE_##L##_thumb_R THUMB_O_##L##_R

@@ -130,9 +130,10 @@ Most boards are one of two contiguous shapes and don't need a bespoke adapter �
 A board writes its own `KEYMAP_LAYER` when its matrix isn't one of those shapes — it
 weaves the core fragments plus whatever it has:
 
-- **TOTEM** (`geom_totem.h`) — `3×5+2` plus a physically-present outer pinky per hand
-  (pos 20/31) and outer thumb (32/37); those four weave `RSVD_<layer>` (inert) and get
-  `POS_LBX/RBX/LHX/RHX` symbols so they can be activated later.
+- **TOTEM** (`geom_totem.h`) — a `3×5` core plus, per hand, one extra pinky on the
+  bottom row and a 3rd (outer) thumb. Both use the shared add-ons: the extra pinky is
+  the outer column's bottom key (`OUTER_*_bot`, Cadet-Shift by default) and the 3rd
+  thumb is `THUMB_O_*` (unused by default).
 - **Corne / Cornholius** (`geom_corne.h`, `geom_cornholius.h`) — outer pinky column
   (`OUTER_*`) around the core on all three rows, plus the 3rd thumb (`THUMB_O_*`);
   Cornholius adds a hand-written 4th row of outer modifiers (`C_R3_*`).
@@ -174,7 +175,7 @@ position must be guarded so boards without that key are unaffected, e.g.:
 
 ```c
 #ifdef HAS_OUTER_COL
-   Cmb_outer { key-positions = <POS_LBX ...>; ... };
+   Cmb_outer { key-positions = <POS_LOB ...>; ... };
 #endif
 ```
 
@@ -231,9 +232,11 @@ Correctness is proven by preprocessing, not just "it builds":
 
 - **`scratchpad/verify.py`** runs the C preprocessor over the *original*
   `zmk-config-totem` keymap and our `totem.keymap`, then compares every layer's
-  expanded `bindings` and every combo. TOTEM must stay **byte-identical** — it is the
-  regression gate that proves a change to shared content didn't alter the canonical
-  layout: 5/5 layers identical, all 37 combos identical.
+  expanded `bindings` and every combo. TOTEM's **34-key core must stay byte-identical**
+  — the regression gate that proves a change to shared content didn't alter the
+  canonical layout: 5/5 layers identical, all 37 combos identical. (TOTEM's four outer
+  keys — its extra pinkies + 3rd thumbs — are now shared-add-on-driven, so they are
+  excluded from the byte comparison.)
 - **Per-board binding count** (e.g. `scratchpad/verify_cb34s.py`,
   `verify_endgame.py`): a board's keymap must preprocess to exactly the number of
   bindings its matrix has — `34` for a `3×5+2` core, `36` for a `3×5+3` board, etc.

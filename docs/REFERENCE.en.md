@@ -179,14 +179,9 @@ integers = the board's physical key-position index (as ZMK numbers keys in its
 |---|---|---|
 | `POS_LOT / POS_ROT` | outer pinky column, **t**op row (L/R) | Corne, Cornholius, Splaytoraid40 |
 | `POS_LOH / POS_ROH` | outer pinky column, **h**ome row (L/R) | Corne, Cornholius, Splaytoraid40 |
-| `POS_LOB / POS_ROB` | outer pinky column, **b**ottom row (L/R) | Corne, Cornholius |
-| `POS_LHX / POS_RHX` | 3rd (outer) thumb (L/R) | every board with a 3rd thumb |
-| `POS_LBX / POS_RBX` | bottom-row outer pinky on TOTEM (its naming) | TOTEM |
+| `POS_LOB / POS_ROB` | outer pinky column, **b**ottom row (L/R) | Corne, Cornholius, TOTEM |
+| `POS_LHX / POS_RHX` | 3rd (outer) thumb (L/R) | every board with a 3rd thumb (incl. TOTEM) |
 | `POS_CENTER` | a single center key (encoder push) | Le Chiffre, Splaytoraid |
-
-> Naming note: TOTEM predates the `LOB/ROB` convention and calls its bottom-row outer
-> pinkies `POS_LBX/POS_RBX`; both refer to the same kind of key. New boards should use
-> `LOB/ROB`.
 
 **Shared helper `core_3x5.h`** — any board whose alpha block is numbered contiguously
 `0..29` (row-major) `#include`s this to get all 30 alpha `POS_*` in one line instead of
@@ -723,9 +718,11 @@ Correctness is proven by preprocessing, not just "it builds":
 
 - **`scratchpad/verify.py`** runs the C preprocessor over the *original*
   `zmk-config-totem` keymap and our `totem.keymap`, comparing every layer's expanded
-  `bindings` and every combo. TOTEM must stay **byte-identical** — the regression gate
-  that proves a shared-content edit didn't alter the canonical layout (5/5 layers, all
-  37 combos identical).
+  `bindings` and every combo. TOTEM's **34-key core must stay byte-identical** — the
+  regression gate that proves a shared-content edit didn't alter the canonical layout
+  (5/5 layers, all 37 combos identical). TOTEM's four outer keys (its bottom extra
+  pinkies + 3rd thumbs) are now intentionally driven by the shared add-ons, so they are
+  excluded from this byte comparison.
 - **Per-board binding count** (`verify_cb34s.py`, `verify_endgame.py`, …): a board's
   keymap must preprocess to exactly its physical key count (34 for `3×5+2`, 36 for
   `3×5+3`, 42 for the Kolibri example). This catches a mis-woven `KEYMAP_LAYER` (wrong
