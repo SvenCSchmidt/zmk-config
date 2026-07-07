@@ -5,21 +5,24 @@ settings are defined **once** in `config/shared/`; each board only carries a thi
 *geometry adapter*. Change a combo or a key in one place and rebuild firmware for
 every board.
 
-## How it works (Strategy B: master layout + per-board adapter)
+## How it works (shared core + composition)
 
-- **`config/shared/master_layers.dtsi`** holds every layer's content as `KM_<layer>`
-  macros over a fixed set of named *master slots*. The master is a maximal
-  **6 rows x 7 columns per hand + 3 thumbs per hand** grid (90 slots); the middle
-  5 columns x 3 rows + inner 2 thumbs are the shared core that is actually populated,
-  and every other slot (outer/inner-extra columns, function/number/extra rows, outer
-  thumb) is reserved for future boards (`&none`/`&trans`). This is the single source
-  of truth, written as a readable key grid.
+- **`config/shared/core_blocks.dtsi`** is the single source of truth: the **3×5 +
+  2-thumb core** (34 keys, canonical Colemak-DH) as small composable fragments,
+  `CORE_<layer>_<row>_<hand>`, plus the weave helpers `WEAVE_ALPHA_3x5` / `WEAVE_CORE`.
+  It carries *only* the core — no reserved outer grid.
+- **`config/shared/addons/*.h`** are reusable structures that several boards share —
+  the outer pinky column (`outer_col.h`) and the 3rd/outer thumb (`thumb_outer.h`).
+  Every fragment is `#ifndef`-guarded, so a board can override any single position by
+  `#define`-ing it before the include.
 - **`config/geometry/geom_<board>.h`** provides, for one board:
   - `POS_*` symbols mapping logical key positions to that board's physical numbers
     (used by `combos.dtsi` and `behaviors.dtsi` — no raw number lives in `shared/`), and
-  - a QMK-style `LAYOUT()` macro that places the master slots onto the board's
-    physical matrix at compile time (reordering, padding dead positions with
-    `&none`, dropping slots the board doesn't have).
+  - a `KEYMAP_LAYER(L)` macro that weaves the core fragments (and whichever add-ons the
+    board physically has, plus any hand-written edges) into the board's matrix order.
+  Common shapes just `#include` a shared adapter — **`geom_3x5_2.h`** (3×5+2) or
+  **`geom_3x5_3.h`** (3×5+3); odd matrices (TOTEM, Corne/Cornholius, Le Chiffre,
+  Splaytoraid) write a small bespoke weave.
 - **`config/<board>.keymap`** is thin: it selects the geometry header, includes
   `config/shared/*`, and maps each layer with `bindings = <KEYMAP_LAYER(base)>`.
 - **Shared Kconfig** comes in two flavors, chosen per board by radio type via
@@ -32,8 +35,8 @@ The canonical content is the Colemak-DH TOTEM layout (`base`, `nav`, `num`, `fun
 `pad`). Host layout assumption: the OS keyboard layout is **German (DE)** (umlauts/€
 are produced via AltGr; see `config/shared/keys_de.h`).
 
-**➜ Full details in [`docs/MASTER_LAYOUT.md`](docs/MASTER_LAYOUT.md)** — the master
-grid and slot indices, naming, adapters, editing, board sourcing (module vs.
+**➜ Full details in [`docs/MASTER_LAYOUT.md`](docs/MASTER_LAYOUT.md)** — the shared
+core, add-ons and overrides, per-board adapters, editing, board sourcing (module vs.
 vendored), config, and verification.
 
 ## Boards
