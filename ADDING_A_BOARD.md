@@ -6,7 +6,10 @@ adapter* that weaves the shared core (and any reusable add-ons) onto its physica
 matrix. Adding a board therefore touches no shared file.
 
 See [`docs/MASTER_LAYOUT.md`](docs/MASTER_LAYOUT.md) for the full model; this is the
-short recipe.
+short recipe. For the **complete reference with a full worked example** (a fictional
+board larger than `3×5+2`, incl. an override and an encoder) and every variable
+documented, see [`docs/REFERENCE.en.md`](docs/REFERENCE.en.md) (English) /
+[`docs/REFERENCE.de.md`](docs/REFERENCE.de.md) (Deutsch).
 
 ## Steps
 

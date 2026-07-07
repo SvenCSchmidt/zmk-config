@@ -1,5 +1,10 @@
 # The master layout — how this repo works
 
+> This is the conceptual overview. For the **complete reference** — every shared
+> variable documented and a full step-by-step board example — see
+> [`REFERENCE.en.md`](REFERENCE.en.md) (English) / [`REFERENCE.de.md`](REFERENCE.de.md)
+> (Deutsch).
+
 This repo compiles **one** keymap for **many** keyboards. All shared content lives
 once in `config/shared/`; each board only carries a thin *geometry adapter*
 (`config/geometry/geom_<board>.h`) that weaves that content onto its physical keys

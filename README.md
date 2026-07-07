@@ -35,9 +35,13 @@ The canonical content is the Colemak-DH TOTEM layout (`base`, `nav`, `num`, `fun
 `pad`). Host layout assumption: the OS keyboard layout is **German (DE)** (umlauts/€
 are produced via AltGr; see `config/shared/keys_de.h`).
 
-**➜ Full details in [`docs/MASTER_LAYOUT.md`](docs/MASTER_LAYOUT.md)** — the shared
+**➜ Overview in [`docs/MASTER_LAYOUT.md`](docs/MASTER_LAYOUT.md)** — the shared
 core, add-ons and overrides, per-board adapters, editing, board sourcing (module vs.
 vendored), config, and verification.
+
+**➜ Complete reference** (every variable documented + a full step-by-step board
+example): [`docs/REFERENCE.en.md`](docs/REFERENCE.en.md) 🇬🇧 ·
+[`docs/REFERENCE.de.md`](docs/REFERENCE.de.md) 🇩🇪
 
 ## Boards
 
