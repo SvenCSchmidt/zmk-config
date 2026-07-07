@@ -1,7 +1,7 @@
 # Copyright (c) 2021 @MangoIV
 # SPDX-License-Identifier: MIT
 
-if BOARD_LE_CHIFF_BLE
+if BOARD_LE_CHIFFRE_BLE
 
 config ZMK_KEYBOARD_NAME
 	default "BLE Chiffre"
@@ -19,4 +19,4 @@ config BT_CTLR
 config ZMK_BATTERY_VOLTAGE_DIVIDER
 	default y
 
-endif # BOARD_LE_CHIFF_BLE
+endif # BOARD_LE_CHIFFRE_BLE

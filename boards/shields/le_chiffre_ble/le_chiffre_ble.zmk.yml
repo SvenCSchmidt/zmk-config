@@ -1,5 +1,5 @@
 file_format: "1"
-id: le_chiff_ble
+id: le_chiffre_ble
 name: Le Chiffre BLE
 type: board
 arch: arm

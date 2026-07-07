@@ -1,5 +1,5 @@
-identifier: le_chiff_ble
-name: le_chiff_ble
+identifier: le_chiffre_ble
+name: le_chiffre_ble
 type: mcu
 arch: arm
 toolchain:

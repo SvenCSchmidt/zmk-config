@@ -11,7 +11,7 @@
  * The 30 alpha positions come from the shared core_3x5.h; this file only adds the
  * thumb arrangement. Variant A: inner 2/hand are the core (31,32 left / 33,34 right);
  * the outer thumb (30 left, 35 right) is the shared 3rd thumb (addons/thumb_outer.h).
- * Boards using it: MNHTTN, le_oeuf.
+ * Boards using it: MNHTTN, Onyx Cinder, Endgame / BLEndgame.
  */
 
 #pragma once

@@ -1,7 +1,7 @@
 /*
  * Cornholius (ebastler) — thin keymap. Wireless nRF52840 unibody "drop-in" PCB for
  * the Foostan Cornelius; the board itself is vendored (HWv2-migrated) under
- * boards/ebastler/cornholius/. Superset (4x12 = 48 keys): the outer pinky column,
+ * boards/shields/cornholius/. Superset (4x12 = 48 keys): the outer pinky column,
  * the fourth-row outer modifier keys and the two outer thumbs map to reserved master
  * slots (currently inactive) — the board runs the canonical 34-key core. All content
  * lives in config/shared/.

@@ -1,6 +1,6 @@
 /*
  * Geometry adapter for the Le Chiffre BLE ("BLE Chiffre", MangoIV) — a vendored
- * HWv2 nRF52840 unibody board (boards/mangoiv/le_chiff_ble/). 35 physical positions:
+ * HWv2 nRF52840 unibody board (boards/shields/le_chiffre_ble/). 35 physical positions:
  * a 3x5 core + a single CENTER key (in the bottom row's middle) + 2 thumbs/hand,
  * plus a center rotary encoder (a sensor, not a key position).
  *

@@ -1,6 +1,6 @@
 /*
  * Le Chiffre 36 (STM32; sporkus) — thin keymap. Vendored HWv2 STM32F072 board in
- * boards/sporkus/le_chiffre_stm32/, USB only. 3x5 core + 3 thumbs/hand (the board's
+ * boards/shields/le_chiffre_stm32/, USB only. 3x5 core + 3 thumbs/hand (the board's
  * 36-key transform), so it reuses the shared adapter geom_3x5_3.h. Encoder disabled.
  * All content lives in config/shared/.
  */

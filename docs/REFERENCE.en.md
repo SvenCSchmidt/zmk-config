@@ -92,8 +92,8 @@ zmk-config/
 │       ├── geom_3x5_3.h             # shared adapter: 3x5 + 3 thumbs (0..35)
 │       └── geom_<board>.h           # per-board bespoke adapters (supersets, odd matrices)
 ├── boards/
-│   ├── shields/<name>/              # vendored split/shield hardware definitions
-│   └── <vendor>/<board>/            # vendored HWv2 controller boards (nRF/STM32)
+│   └── shields/<name>/              # all vendored hardware: split/shield definitions
+│                                    # AND full HWv2 controller boards (nRF/STM32)
 ├── build.yaml                       # CI build matrix (one entry per board half)
 ├── zephyr/module.yml                # board_root: . (exposes boards/ for vendoring)
 ├── README.md
@@ -744,11 +744,12 @@ comes from one of:
   forager (`carrefinho/forager-zmk-module`), delta-omega
   (`unspecworks/zmk-keyboard-delta-omega`), plus the `nice-view-gem` display and the
   `zmk-rgbled-widget` (a hard dependency of delta-omega, needed workspace-wide).
-- **Vendored** under `boards/` — a local copy, when no distributable module exists or a
-  module can't build against our revision. Shields live in `boards/shields/<name>/`;
-  full HWv2 controller boards (migrated to Zephyr 4.1) live in
-  `boards/<vendor>/<board>/` (Cornholius, Le Chiffre BLE, Le Chiffre 36 STM32).
-  `zephyr/module.yml` sets `board_root: .` so `boards/` is on the search path.
+- **Vendored** under `boards/shields/<name>/` — a local copy, when no distributable
+  module exists or a module can't build against our revision. This one directory holds
+  both plain shields and full HWv2 controller boards migrated to Zephyr 4.1 (Cornholius,
+  Le Chiffre BLE, Le Chiffre 36 STM32) — Zephyr discovers a board by its `board.yml`
+  regardless of the path, so boards and shields can share the folder. `zephyr/module.yml`
+  sets `board_root: .` so `boards/` is on the search path.
 
 Deleting your old per-board `zmk-config-*` repos is safe: the shield/board definitions
 are vendored (or pulled as modules) and all content lives in `config/shared/`.

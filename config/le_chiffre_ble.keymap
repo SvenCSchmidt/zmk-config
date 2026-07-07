@@ -1,6 +1,6 @@
 /*
  * Le Chiffre BLE ("BLE Chiffre", MangoIV) — thin keymap. Vendored HWv2 nRF52840
- * unibody board in boards/mangoiv/le_chiff_ble/. 3x5 core + a center key (Mute) +
+ * unibody board in boards/shields/le_chiffre_ble/. 3x5 core + a center key (Mute) +
  * 2 thumbs/hand; the center rotary encoder rotates volume down/up (sensor-bindings).
  * The onboard OLED is off for now. All key content lives in config/shared/.
  */

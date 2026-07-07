@@ -1,7 +1,7 @@
 /*
  * Geometry adapter for the Cornholius (ebastler) — a wireless nRF52840 unibody
  * "drop-in" PCB for the Foostan Cornelius. Vendored HWv2 board lives in
- * boards/ebastler/cornholius/; this header maps the shared master onto its matrix.
+ * boards/shields/cornholius/; this header maps the shared core onto its matrix.
  *
  * SUPERSET (larger than Corne): 4 rows x 12 columns = 48 physical positions. Beyond
  * the shared 3x5+2 core it has an outer pinky column on all three alpha rows AND a

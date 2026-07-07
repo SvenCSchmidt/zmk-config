@@ -1,5 +1,5 @@
 board:
-  name: le_chiff_ble
+  name: le_chiffre_ble
   full_name: Le Chiffre BLE
   vendor: mangoiv
   socs:

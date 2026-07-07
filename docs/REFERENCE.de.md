@@ -94,8 +94,8 @@ zmk-config/
 │       ├── geom_3x5_3.h             # geteilter Adapter: 3x5 + 3 Daumen (0..35)
 │       └── geom_<board>.h           # board-eigene Adapter (Supersets, ungewöhnl. Matrix)
 ├── boards/
-│   ├── shields/<name>/              # vendorte Split-/Shield-Hardwaredefinitionen
-│   └── <vendor>/<board>/            # vendorte HWv2-Controller-Boards (nRF/STM32)
+│   └── shields/<name>/              # alle vendorte Hardware: Split-/Shield-Definitionen
+│                                    # UND vollständige HWv2-Controller-Boards (nRF/STM32)
 ├── build.yaml                       # CI-Build-Matrix (ein Eintrag pro Board-Hälfte)
 ├── zephyr/module.yml                # board_root: . (macht boards/ fürs Vendoring sichtbar)
 ├── README.md
@@ -761,11 +761,13 @@ Controller-Board) stammt aus einer von zwei Quellen:
   v0.4), forager (`carrefinho/forager-zmk-module`), delta-omega
   (`unspecworks/zmk-keyboard-delta-omega`), dazu das Display `nice-view-gem` und das
   `zmk-rgbled-widget` (eine harte Abhängigkeit von delta-omega, workspace-weit nötig).
-- **Vendort** unter `boards/` — eine lokale Kopie, wenn kein verteilbares Modul existiert
-  oder ein Modul nicht gegen unsere Revision baut. Shields liegen in
-  `boards/shields/<name>/`; vollständige HWv2-Controller-Boards (auf Zephyr 4.1 migriert)
-  in `boards/<vendor>/<board>/` (Cornholius, Le Chiffre BLE, Le Chiffre 36 STM32).
-  `zephyr/module.yml` setzt `board_root: .`, damit `boards/` im Suchpfad liegt.
+- **Vendort** unter `boards/shields/<name>/` — eine lokale Kopie, wenn kein verteilbares
+  Modul existiert oder ein Modul nicht gegen unsere Revision baut. Dieses eine
+  Verzeichnis enthält sowohl reine Shields als auch vollständige HWv2-Controller-Boards
+  (auf Zephyr 4.1 migriert: Cornholius, Le Chiffre BLE, Le Chiffre 36 STM32) — Zephyr
+  erkennt ein Board an seiner `board.yml`, unabhängig vom Pfad, daher können sich Boards
+  und Shields den Ordner teilen. `zephyr/module.yml` setzt `board_root: .`, damit
+  `boards/` im Suchpfad liegt.
 
 Deine alten Board-Repos `zmk-config-*` zu löschen ist sicher: die Shield-/Board-
 Definitionen sind vendort (oder werden als Module geladen), und aller Inhalt liegt in

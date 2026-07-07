@@ -1,4 +1,4 @@
-if SHIELD_LE_OEUF
+if SHIELD_ONYXCINDER
 
 config ZMK_KEYBOARD_NAME
     default "Onyx Cinder"

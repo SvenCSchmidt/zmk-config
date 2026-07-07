@@ -123,7 +123,7 @@ Most boards are one of two contiguous shapes and don't need a bespoke adapter �
   so those 30 numbers are defined once.
 - **`geometry/geom_3x5_3.h`** — `3×5 + 3 thumbs/hand`, numbered `0..35` (adds the outer
   thumb via `thumb_outer.h`; inner two are the core — "Variant A"). Boards: MNHTTN,
-  le_oeuf, Endgame/BLEndgame.
+  Onyx Cinder, Endgame/BLEndgame.
 
 ### Bespoke adapters (supersets & odd matrices)
 
