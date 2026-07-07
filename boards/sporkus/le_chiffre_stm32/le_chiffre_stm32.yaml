@@ -1,0 +1,9 @@
+identifier: le_chiffre_stm32
+name: le_chiffre_stm32
+type: mcu
+arch: arm
+toolchain:
+  - zephyr
+  - gnuarmemb
+supported:
+  - usb_device

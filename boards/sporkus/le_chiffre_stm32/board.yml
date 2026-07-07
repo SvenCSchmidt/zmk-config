@@ -1,0 +1,8 @@
+board:
+  name: le_chiffre_stm32
+  full_name: Le Chiffre (STM32)
+  vendor: sporkus
+  socs:
+    - name: stm32f072xb
+      variants:
+        - name: zmk

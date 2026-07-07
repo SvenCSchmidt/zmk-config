@@ -1,0 +1,9 @@
+# Copyright (c) 2020 The ZMK Contributors
+# SPDX-License-Identifier: MIT
+
+if BOARD_LE_CHIFFRE_STM32
+
+config ZMK_KEYBOARD_NAME
+	default "Le Chiffre 36"
+
+endif # BOARD_LE_CHIFFRE_STM32

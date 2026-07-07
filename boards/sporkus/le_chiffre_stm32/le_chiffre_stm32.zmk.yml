@@ -1,0 +1,8 @@
+file_format: "1"
+id: le_chiffre_stm32
+name: Le Chiffre (STM32)
+type: board
+arch: arm
+outputs:
+  - usb
+url: https://github.com/sporkus/le_chiffre

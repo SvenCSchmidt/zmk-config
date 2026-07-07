@@ -1,0 +1,16 @@
+# SPDX-License-Identifier: MIT
+
+# 48MHz system clock
+CONFIG_SYS_CLOCK_HW_CYCLES_PER_SEC=48000000
+
+CONFIG_PINCTRL=y
+CONFIG_GPIO=y
+CONFIG_I2C=y
+
+CONFIG_ZMK_USB=y
+CONFIG_USB_SELF_POWERED=n
+
+# Needed to reduce this to a size that will fit on the F072 (128 KB) more easily
+CONFIG_ISR_STACK_SIZE=1024
+
+CONFIG_CLOCK_CONTROL=y

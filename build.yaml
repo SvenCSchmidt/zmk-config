@@ -140,3 +140,10 @@ include:
   - board: le_chiff_ble//zmk
     shield: settings_reset
     artifact-name: le_chiff_ble_settings_reset
+
+  # --- Le Chiffre 36 (chiffre36) — vendored HWv2 STM32F072 board in
+  # boards/sporkus/le_chiffre_stm32/ (migrated from zmk-config-chiffre36). USB only
+  # (STM32, no BLE) -> shared_usb.conf. 3x5 core + 3 thumbs/hand (36-key transform).
+  # NOTE: the F072 has only 128 KB flash, so this may not fit current zmk main. ---
+  - board: le_chiffre_stm32//zmk
+    cmake-args: -DEXTRA_CONF_FILE=../../config/shared_usb.conf

@@ -55,6 +55,7 @@ vendored), config, and verification.
 | MNHTTN | `xiao_ble//zmk` + `mnhttn_left/right` (vendored shield in `boards/shields/mnhttn/`) | 3x5 + 3 thumbs/side (outer thumb reserved) |
 | le_oeuf / Onyx Cinder | `xiao_ble//zmk` + `le_oeuf` (vendored shield in `boards/shields/le_oeuf/`) | unibody 36 keys, 3x5 + 3 thumbs/side (595 shift-register rows over SPI) |
 | Le Chiffre BLE | `le_chiff_ble//zmk` (vendored HWv2 board in `boards/mangoiv/le_chiff_ble/`, migrated from `MangoIV/le_chiff_ble`) | nRF52840 unibody, 35 keys: 3x5 core + center key (Mute) + 2 thumbs/side + center encoder (vol); OLED off for now |
+| Le Chiffre 36 (chiffre36) | `le_chiffre_stm32//zmk` (vendored HWv2 board in `boards/sporkus/le_chiffre_stm32/`, migrated from `sporkus/le_chiffre`) | **STM32F072**, USB only, 36 keys: 3x5 + 3 thumbs/side. Note: 128 KB flash may not fit current zmk main |
 
 Adding a board changes no shared content — see [`ADDING_A_BOARD.md`](ADDING_A_BOARD.md).
 
