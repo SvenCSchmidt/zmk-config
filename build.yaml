@@ -113,6 +113,12 @@ include:
     shield: cradio_right
     cmake-args: -DEXTRA_CONF_FILE=../../config/shared_ble.conf
 
+  # --- El Chibre (BLE nice!nano unibody; vendored shield in boards/shields/elchibre).
+  # Plain 3x5 + 2 thumbs/hand, contiguous 0..33 -> reuses geom_3x5_2.h. ---
+  - board: nice_nano//zmk
+    shield: elchibre
+    cmake-args: -DEXTRA_CONF_FILE=../../config/shared_ble.conf
+
   # --- MNHTTN (fooker split on xiao_ble; vendored shield in boards/shields/mnhttn).
   # 3x5 core + 3 thumbs/hand. ---
   - board: xiao_ble//zmk

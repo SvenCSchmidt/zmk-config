@@ -1,0 +1,11 @@
+file_format: "1"
+id: elchibre
+name: El Chibre
+type: shield
+url: https://github.com/SvenCSchmidt/zmk-config-elchibre
+requires:
+  - nice_nano
+features:
+  - keys
+siblings:
+  - elchibre

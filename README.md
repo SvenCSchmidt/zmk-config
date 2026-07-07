@@ -59,6 +59,7 @@ example): [`docs/REFERENCE.en.md`](docs/REFERENCE.en.md) 🇬🇧 ·
 | Splaytoraid40 | `sparkfun_pro_micro_rp2040//zmk` + `splaytoraid40` (vendored shield in `boards/shields/splaytoraid40/`) | wired RP2040 unibody, 41 keys: 3x5 core + outer column (top+home) + 3 thumbs/hand + center encoder (vol/mute) |
 | Splaytoraid36 | `nice_nano//zmk` + `splaytoraid36` (vendored shield in `boards/shields/splaytoraid36/`) | BLE, the Splaytoraid40 without the outer column: 3x5 core + 3 thumbs/hand + center encoder (vol/mute) |
 | sweep | `nice_nano//zmk` + `cradio_left/right` (built into ZMK core) | Ferris Sweep, 3x5 + 2 thumbs/side |
+| El Chibre | `nice_nano//zmk` + `elchibre` (vendored shield in `boards/shields/elchibre/`) | BLE unibody, 3x5 + 2 thumbs/side |
 | MNHTTN | `xiao_ble//zmk` + `mnhttn_left/right` (vendored shield in `boards/shields/mnhttn/`) | 3x5 + 3 thumbs/side (outer thumb reserved) |
 | Onyx Cinder | `xiao_ble//zmk` + `onyxcinder` (vendored shield in `boards/shields/onyxcinder/`) | unibody 36 keys, 3x5 + 3 thumbs/side (595 shift-register rows over SPI) |
 | Le Chiffre BLE | `le_chiffre_ble//zmk` (vendored HWv2 board in `boards/shields/le_chiffre_ble/`, migrated from `MangoIV/le_chiff_ble`) | nRF52840 unibody, 35 keys: 3x5 core + center key (Mute) + 2 thumbs/side + center encoder (vol); OLED off for now |
