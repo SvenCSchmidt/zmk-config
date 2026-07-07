@@ -143,7 +143,21 @@ include:
 
   # --- Le Chiffre 36 (chiffre36) — vendored HWv2 STM32F072 board in
   # boards/sporkus/le_chiffre_stm32/ (migrated from zmk-config-chiffre36). USB only
-  # (STM32, no BLE) -> shared_usb.conf. 3x5 core + 3 thumbs/hand (36-key transform).
-  # NOTE: the F072 has only 128 KB flash, so this may not fit current zmk main. ---
+  # (STM32, no BLE) -> shared_usb.conf. 3x5 core + 3 thumbs/hand (36-key transform). ---
   - board: le_chiffre_stm32//zmk
     cmake-args: -DEXTRA_CONF_FILE=../../config/shared_usb.conf
+
+  # --- Endgame (unibody, vendored shield in boards/shields/endgame). Two build
+  # variants off ONE shield + ONE thin config/endgame.keymap; 3x5 core + 3 thumbs/
+  # hand (geom_3x5_3.h). The shield needs a pro_micro footprint.
+  #   BLEndgame — the BLE variant on nice!nano (nRF52840) -> shared_ble.conf.
+  #   endgame   — the wired RP2040 (Gemini/RP2040-Zero class) variant on a pro_micro
+  #               RP2040 controller -> shared_usb.conf (no radio). ---
+  - board: nice_nano//zmk
+    shield: endgame
+    cmake-args: -DEXTRA_CONF_FILE=../../config/shared_ble.conf
+    artifact-name: blendgame
+  - board: sparkfun_pro_micro_rp2040//zmk
+    shield: endgame
+    cmake-args: -DEXTRA_CONF_FILE=../../config/shared_usb.conf
+    artifact-name: endgame
